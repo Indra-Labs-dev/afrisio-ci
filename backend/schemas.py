@@ -1,7 +1,64 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from typing import List, Optional
 from datetime import datetime
 
+
+# ─── Auth ────────────────────────────────────────────────────────────────────
+
+class UserRegister(BaseModel):
+    email: str
+    username: str
+    password: str
+    full_name: Optional[str] = None
+
+
+class UserLogin(BaseModel):
+    email: str
+    password: str
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user: "UserResponse"
+
+
+# ─── User ─────────────────────────────────────────────────────────────────────
+
+class UserResponse(BaseModel):
+    id: int
+    email: str
+    username: str
+    full_name: Optional[str] = None
+    is_active: bool
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+# ─── Dashboard / Stats ────────────────────────────────────────────────────────
+
+class CategoryStat(BaseModel):
+    category_name: str
+    icon: Optional[str]
+    quizzes_done: int
+    avg_percentage: float
+
+
+class DashboardResponse(BaseModel):
+    total_quizzes: int
+    avg_score: float
+    best_score: float
+    total_points: int
+    rank: int
+    category_stats: List[CategoryStat]
+
+
+TokenResponse.model_rebuild()
+
+
+# ─── Option ─────────────────────────────────────────────────────────────────
 
 class OptionBase(BaseModel):
     option_text: str
@@ -19,6 +76,8 @@ class OptionResponse(OptionBase):
     class Config:
         from_attributes = True
 
+
+# ─── Question ────────────────────────────────────────────────────────────────
 
 class QuestionBase(BaseModel):
     question_text: str
@@ -47,6 +106,8 @@ class QuestionResponseWithoutAnswer(QuestionBase):
         from_attributes = True
 
 
+# ─── Category ────────────────────────────────────────────────────────────────
+
 class CategoryBase(BaseModel):
     name: str
     description: Optional[str] = None
@@ -63,6 +124,8 @@ class CategoryResponse(CategoryBase):
     class Config:
         from_attributes = True
 
+
+# ─── Quiz ─────────────────────────────────────────────────────────────────────
 
 class QuizBase(BaseModel):
     title: str
@@ -95,6 +158,8 @@ class QuizDetailResponse(QuizResponse):
 class QuizWithAnswersResponse(QuizResponse):
     questions: List[QuestionResponse]
 
+
+# ─── Attempt ──────────────────────────────────────────────────────────────────
 
 class UserAnswerCreate(BaseModel):
     question_id: int

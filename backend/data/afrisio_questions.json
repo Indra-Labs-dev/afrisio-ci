@@ -1,0 +1,917 @@
+{
+  "version": "1.0.0",
+  "app": "AfriSio CI",
+  "description": "Banque de questions pour la préparation aux concours ivoiriens",
+  "categories": [
+    {
+      "id": "culture_generale",
+      "label": "Culture Générale",
+      "description": "Questions de culture générale sur la Côte d'Ivoire, l'Afrique et le monde",
+      "questions": [
+        {
+          "id": "cg_001",
+          "question": "Quelle est la capitale politique de la Côte d'Ivoire ?",
+          "options": ["Abidjan", "Yamoussoukro", "Bouaké", "San-Pédro"],
+          "answer": "Yamoussoukro",
+          "explanation": "Yamoussoukro est la capitale politique et administrative officielle de la Côte d'Ivoire depuis 1983, bien qu'Abidjan reste le centre économique du pays.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "cg_002",
+          "question": "En quelle année la Côte d'Ivoire a-t-elle obtenu son indépendance ?",
+          "options": ["1958", "1960", "1962", "1965"],
+          "answer": "1960",
+          "explanation": "La Côte d'Ivoire a obtenu son indépendance de la France le 7 août 1960. Cette date est célébrée comme la fête nationale.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "cg_003",
+          "question": "Quel est le premier président de la Côte d'Ivoire ?",
+          "options": ["Laurent Gbagbo", "Henri Konan Bédié", "Félix Houphouët-Boigny", "Alassane Ouattara"],
+          "answer": "Félix Houphouët-Boigny",
+          "explanation": "Félix Houphouët-Boigny a été le premier président de la Côte d'Ivoire de 1960 jusqu'à sa mort en 1993.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "cg_004",
+          "question": "Combien de pays partagent une frontière terrestre avec la Côte d'Ivoire ?",
+          "options": ["4", "5", "6", "3"],
+          "answer": "5",
+          "explanation": "La Côte d'Ivoire partage ses frontières avec le Ghana (est), le Burkina Faso (nord-est), le Mali (nord), la Guinée (nord-ouest) et le Liberia (ouest).",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "cg_005",
+          "question": "Quelle organisation sous-régionale regroupe les pays d'Afrique de l'Ouest ?",
+          "options": ["UA", "CEDEAO", "CEMAC", "UEMOA"],
+          "answer": "CEDEAO",
+          "explanation": "La CEDEAO (Communauté Économique des États de l'Afrique de l'Ouest) regroupe 15 pays d'Afrique de l'Ouest. Elle a été fondée en 1975.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "cg_006",
+          "question": "Quel est le fleuve le plus long de Côte d'Ivoire ?",
+          "options": ["La Comoé", "Le Sassandra", "Le Bandama", "La Bia"],
+          "answer": "La Comoé",
+          "explanation": "La Comoé est le fleuve le plus long de Côte d'Ivoire avec environ 1 160 km de long. Elle prend sa source au Burkina Faso.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "cg_007",
+          "question": "Quelle est la monnaie utilisée en Côte d'Ivoire ?",
+          "options": ["Le franc ivoirien", "Le franc CFA", "Le franc africain", "Le cedi"],
+          "answer": "Le franc CFA",
+          "explanation": "La Côte d'Ivoire utilise le franc CFA (Communauté Financière Africaine), émis par la BCEAO et partagé par 8 pays de l'UEMOA.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "cg_008",
+          "question": "Quel est le siège de l'Union Africaine ?",
+          "options": ["Lagos", "Nairobi", "Addis-Abeba", "Le Caire"],
+          "answer": "Addis-Abeba",
+          "explanation": "Le siège de l'Union Africaine est à Addis-Abeba, en Éthiopie. L'UA a été fondée en 2002 en remplacement de l'OUA.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "cg_009",
+          "question": "Combien de membres permanents siègent au Conseil de sécurité de l'ONU ?",
+          "options": ["3", "5", "7", "10"],
+          "answer": "5",
+          "explanation": "Les 5 membres permanents du Conseil de sécurité sont : les États-Unis, la Russie, la Chine, la France et le Royaume-Uni. Ils disposent d'un droit de veto.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "cg_010",
+          "question": "Quelle est la principale ressource d'exportation de la Côte d'Ivoire ?",
+          "options": ["Le pétrole", "Le cacao", "L'or", "Le café"],
+          "answer": "Le cacao",
+          "explanation": "La Côte d'Ivoire est le premier producteur mondial de cacao, représentant environ 40% de la production mondiale. Le cacao est la principale source de revenus d'exportation.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "cg_011",
+          "question": "En quelle année a été fondée l'Organisation des Nations Unies (ONU) ?",
+          "options": ["1939", "1945", "1948", "1950"],
+          "answer": "1945",
+          "explanation": "L'ONU a été fondée le 24 octobre 1945 après la Seconde Guerre mondiale, avec pour but de maintenir la paix et la sécurité internationale.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "cg_012",
+          "question": "Quel est le plus grand pays d'Afrique en superficie ?",
+          "options": ["La République Démocratique du Congo", "L'Algérie", "Le Soudan", "La Libye"],
+          "answer": "L'Algérie",
+          "explanation": "L'Algérie est le plus grand pays d'Afrique avec une superficie de 2 381 741 km². Elle est aussi le plus grand pays du monde arabe.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "cg_013",
+          "question": "Quel organe est chargé de superviser les élections en Côte d'Ivoire ?",
+          "options": ["La CEI", "Le Conseil Constitutionnel", "Le Ministère de l'Intérieur", "La CENI"],
+          "answer": "La CEI",
+          "explanation": "La Commission Électorale Indépendante (CEI) est l'organe chargé d'organiser et de superviser les élections en Côte d'Ivoire.",
+          "difficulty": "difficile"
+        },
+        {
+          "id": "cg_014",
+          "question": "Quel prix Nobel a été attribué à un Ivoirien en 2015 ?",
+          "options": ["Prix Nobel de la Paix", "Prix Nobel de Littérature", "Aucun", "Prix Nobel d'Économie"],
+          "answer": "Aucun",
+          "explanation": "Aucun ressortissant ivoirien n'a reçu de Prix Nobel en 2015. Cependant, des Africains comme Wangari Maathai (Kenya, Paix 2004) et Naguib Mahfouz (Égypte, Littérature 1988) ont été primés.",
+          "difficulty": "difficile"
+        },
+        {
+          "id": "cg_015",
+          "question": "Quelle ville abrite le plus grand port d'Afrique de l'Ouest ?",
+          "options": ["Lagos", "Abidjan", "Dakar", "Accra"],
+          "answer": "Abidjan",
+          "explanation": "Le Port Autonome d'Abidjan est le plus grand port d'Afrique de l'Ouest et l'un des plus importants du continent africain.",
+          "difficulty": "moyen"
+        }
+      ]
+    },
+    {
+      "id": "mathematiques",
+      "label": "Mathématiques",
+      "description": "Arithmétique, algèbre, géométrie, probabilités et statistiques",
+      "questions": [
+        {
+          "id": "math_001",
+          "question": "Quelle est la valeur de √144 ?",
+          "options": ["10", "12", "14", "16"],
+          "answer": "12",
+          "explanation": "√144 = 12 car 12 × 12 = 144. La racine carrée d'un nombre n est le nombre positif dont le carré est n.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "math_002",
+          "question": "Si f(x) = 2x² - 3x + 1, quelle est la valeur de f(2) ?",
+          "options": ["3", "5", "7", "9"],
+          "answer": "3",
+          "explanation": "f(2) = 2(2)² - 3(2) + 1 = 2×4 - 6 + 1 = 8 - 6 + 1 = 3.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "math_003",
+          "question": "Quel est le PGCD de 48 et 36 ?",
+          "options": ["6", "8", "12", "18"],
+          "answer": "12",
+          "explanation": "48 = 12 × 4 et 36 = 12 × 3. Le PGCD (Plus Grand Commun Diviseur) de 48 et 36 est 12. On peut aussi utiliser l'algorithme d'Euclide : 48 = 1×36 + 12 ; 36 = 3×12 + 0 → PGCD = 12.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "math_004",
+          "question": "Un triangle a des angles de 45°, 65° et x°. Quelle est la valeur de x ?",
+          "options": ["60°", "70°", "80°", "90°"],
+          "answer": "70°",
+          "explanation": "La somme des angles d'un triangle est 180°. Donc x = 180 - 45 - 65 = 70°.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "math_005",
+          "question": "Quelle est la solution de l'équation 3x - 7 = 11 ?",
+          "options": ["4", "5", "6", "7"],
+          "answer": "6",
+          "explanation": "3x - 7 = 11 → 3x = 11 + 7 = 18 → x = 18/3 = 6. Vérification : 3×6 - 7 = 18 - 7 = 11 ✓",
+          "difficulty": "facile"
+        },
+        {
+          "id": "math_006",
+          "question": "Quelle est l'aire d'un cercle de rayon 7 cm ? (π ≈ 3,14)",
+          "options": ["43,96 cm²", "153,86 cm²", "21,98 cm²", "44 cm²"],
+          "answer": "153,86 cm²",
+          "explanation": "Aire d'un cercle = π × r² = 3,14 × 7² = 3,14 × 49 = 153,86 cm².",
+          "difficulty": "facile"
+        },
+        {
+          "id": "math_007",
+          "question": "Combien vaut 2⁸ ?",
+          "options": ["128", "256", "512", "64"],
+          "answer": "256",
+          "explanation": "2⁸ = 2×2×2×2×2×2×2×2 = 256. On peut calculer par étapes : 2⁴ = 16, puis 2⁸ = 16² = 256.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "math_008",
+          "question": "Dans une classe de 30 élèves, 40% sont des filles. Combien y a-t-il de garçons ?",
+          "options": ["12", "16", "18", "20"],
+          "answer": "18",
+          "explanation": "40% de 30 = 12 filles. Nombre de garçons = 30 - 12 = 18, soit 60% de la classe.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "math_009",
+          "question": "Quel est le résultat de (3 + 5i)(2 - i) où i² = -1 ?",
+          "options": ["6 - 3i + 10i - 5i²", "11 + 7i", "11 - 7i", "1 + 7i"],
+          "answer": "11 + 7i",
+          "explanation": "(3+5i)(2-i) = 6 - 3i + 10i - 5i² = 6 + 7i - 5(-1) = 6 + 7i + 5 = 11 + 7i.",
+          "difficulty": "difficile"
+        },
+        {
+          "id": "math_010",
+          "question": "Si un train parcourt 300 km en 2h30, quelle est sa vitesse moyenne en km/h ?",
+          "options": ["100 km/h", "110 km/h", "120 km/h", "130 km/h"],
+          "answer": "120 km/h",
+          "explanation": "2h30 = 2,5 heures. Vitesse = Distance / Temps = 300 / 2,5 = 120 km/h.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "math_011",
+          "question": "Quelle est la dérivée de f(x) = x³ - 4x + 2 ?",
+          "options": ["3x² - 4", "x² - 4", "3x² + 2", "3x - 4"],
+          "answer": "3x² - 4",
+          "explanation": "La dérivée de xⁿ est n×xⁿ⁻¹. Donc f'(x) = 3x² - 4 + 0 = 3x² - 4.",
+          "difficulty": "difficile"
+        },
+        {
+          "id": "math_012",
+          "question": "Quelle est la probabilité d'obtenir un nombre pair en lançant un dé à 6 faces ?",
+          "options": ["1/3", "1/2", "2/3", "1/6"],
+          "answer": "1/2",
+          "explanation": "Les nombres pairs sur un dé sont : 2, 4, 6. Il y a 3 issues favorables sur 6 possibles. P = 3/6 = 1/2.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "math_013",
+          "question": "Quel est le volume d'un cube de côté 4 cm ?",
+          "options": ["16 cm³", "32 cm³", "48 cm³", "64 cm³"],
+          "answer": "64 cm³",
+          "explanation": "Volume d'un cube = côté³ = 4³ = 4 × 4 × 4 = 64 cm³.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "math_014",
+          "question": "Dans un repère, quel est le milieu du segment [AB] avec A(2, 4) et B(6, 8) ?",
+          "options": ["(3, 5)", "(4, 6)", "(5, 7)", "(8, 12)"],
+          "answer": "(4, 6)",
+          "explanation": "Milieu M = ((x_A + x_B)/2 ; (y_A + y_B)/2) = ((2+6)/2 ; (4+8)/2) = (4 ; 6).",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "math_015",
+          "question": "Quelle est la somme des 10 premiers nombres entiers naturels non nuls (1 à 10) ?",
+          "options": ["45", "50", "55", "60"],
+          "answer": "55",
+          "explanation": "Somme = n(n+1)/2 = 10×11/2 = 55. On peut aussi vérifier : 1+2+3+4+5+6+7+8+9+10 = 55.",
+          "difficulty": "moyen"
+        }
+      ]
+    },
+    {
+      "id": "physique",
+      "label": "Physique",
+      "description": "Mécanique, électricité, optique, thermodynamique et physique moderne",
+      "questions": [
+        {
+          "id": "phy_001",
+          "question": "Quelle est la valeur de l'accélération gravitationnelle terrestre (g) ?",
+          "options": ["8,8 m/s²", "9,8 m/s²", "10,8 m/s²", "11,8 m/s²"],
+          "answer": "9,8 m/s²",
+          "explanation": "L'accélération gravitationnelle terrestre est approximativement g = 9,8 m/s² (souvent arrondi à 10 m/s² dans les calculs). Elle varie légèrement selon la latitude.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "phy_002",
+          "question": "Quelle est la formule de la force selon la deuxième loi de Newton ?",
+          "options": ["F = m/a", "F = m × a", "F = a/m", "F = m + a"],
+          "answer": "F = m × a",
+          "explanation": "La deuxième loi de Newton stipule que la force F est égale au produit de la masse m par l'accélération a : F = m × a. L'unité de la force est le Newton (N).",
+          "difficulty": "facile"
+        },
+        {
+          "id": "phy_003",
+          "question": "Quelle est la vitesse de la lumière dans le vide ?",
+          "options": ["3 × 10⁶ m/s", "3 × 10⁸ m/s", "3 × 10¹⁰ m/s", "3 × 10⁴ m/s"],
+          "answer": "3 × 10⁸ m/s",
+          "explanation": "La vitesse de la lumière dans le vide est c ≈ 3 × 10⁸ m/s (299 792 458 m/s exactement). C'est une constante fondamentale de la physique.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "phy_004",
+          "question": "Quelle loi relie la tension, l'intensité et la résistance dans un circuit électrique ?",
+          "options": ["Loi de Faraday", "Loi d'Ohm", "Loi de Kirchhoff", "Loi de Joule"],
+          "answer": "Loi d'Ohm",
+          "explanation": "La loi d'Ohm : U = R × I, où U est la tension en Volts, R la résistance en Ohms et I l'intensité en Ampères.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "phy_005",
+          "question": "Un objet de masse 5 kg est soulevé à 3 m de hauteur. Quelle est son énergie potentielle ? (g = 10 m/s²)",
+          "options": ["30 J", "50 J", "100 J", "150 J"],
+          "answer": "150 J",
+          "explanation": "Énergie potentielle gravitationnelle : Ep = m × g × h = 5 × 10 × 3 = 150 Joules.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "phy_006",
+          "question": "Quelle est la période d'une onde dont la fréquence est 50 Hz ?",
+          "options": ["0,02 s", "0,2 s", "2 s", "20 s"],
+          "answer": "0,02 s",
+          "explanation": "La période T et la fréquence f sont inversement proportionnelles : T = 1/f = 1/50 = 0,02 secondes.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "phy_007",
+          "question": "Quel phénomène explique pourquoi un crayon paraît cassé dans un verre d'eau ?",
+          "options": ["La réflexion", "La diffraction", "La réfraction", "L'absorption"],
+          "answer": "La réfraction",
+          "explanation": "La réfraction est le changement de direction de la lumière lors du passage d'un milieu à un autre (ici de l'air à l'eau). Cela crée l'illusion que le crayon est cassé.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "phy_008",
+          "question": "Quelle est l'unité de la pression dans le Système International ?",
+          "options": ["Newton", "Joule", "Pascal", "Bar"],
+          "answer": "Pascal",
+          "explanation": "L'unité de pression dans le SI est le Pascal (Pa). 1 Pa = 1 N/m². La pression atmosphérique normale est environ 101 325 Pa.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "phy_009",
+          "question": "Selon le principe de conservation de l'énergie, que peut-on dire ?",
+          "options": [
+            "L'énergie peut être créée mais pas détruite",
+            "L'énergie peut être détruite mais pas créée",
+            "L'énergie ne peut ni être créée ni détruite, seulement transformée",
+            "L'énergie peut être créée et détruite"
+          ],
+          "answer": "L'énergie ne peut ni être créée ni détruite, seulement transformée",
+          "explanation": "Le principe de conservation de l'énergie stipule que l'énergie totale d'un système isolé est constante. Elle peut se transformer d'une forme à une autre mais ne peut pas être créée ni détruite.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "phy_010",
+          "question": "Quelle est la charge de l'électron ?",
+          "options": ["-1,6 × 10⁻¹⁹ C", "+1,6 × 10⁻¹⁹ C", "-9,1 × 10⁻³¹ C", "+9,1 × 10⁻³¹ C"],
+          "answer": "-1,6 × 10⁻¹⁹ C",
+          "explanation": "La charge élémentaire de l'électron est e = -1,6 × 10⁻¹⁹ Coulombs. Sa masse est 9,1 × 10⁻³¹ kg.",
+          "difficulty": "difficile"
+        },
+        {
+          "id": "phy_011",
+          "question": "En combien de temps une balle tombe-t-elle de 20 m de hauteur ? (g = 10 m/s², vitesse initiale = 0)",
+          "options": ["1 s", "2 s", "3 s", "4 s"],
+          "answer": "2 s",
+          "explanation": "h = ½ × g × t² → t² = 2h/g = 2×20/10 = 4 → t = 2 secondes.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "phy_012",
+          "question": "Qu'est-ce que l'effet photoélectrique ?",
+          "options": [
+            "L'émission de lumière par un métal chauffé",
+            "L'émission d'électrons par un métal éclairé",
+            "La production de courant par effet thermique",
+            "La réflexion de la lumière par un métal"
+          ],
+          "answer": "L'émission d'électrons par un métal éclairé",
+          "explanation": "L'effet photoélectrique est l'émission d'électrons par un métal soumis à un rayonnement lumineux de fréquence suffisante. Einstein a expliqué ce phénomène en 1905, ce qui lui a valu le Prix Nobel.",
+          "difficulty": "difficile"
+        },
+        {
+          "id": "phy_013",
+          "question": "Un objet pèse 60 N sur Terre. Quelle est sa masse ? (g = 10 m/s²)",
+          "options": ["6 kg", "60 kg", "600 kg", "0,6 kg"],
+          "answer": "6 kg",
+          "explanation": "Poids P = m × g → m = P/g = 60/10 = 6 kg. La masse est une propriété intrinsèque, le poids dépend du champ gravitationnel.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "phy_014",
+          "question": "Quelle est la relation entre la longueur d'onde λ, la vitesse v et la fréquence f d'une onde ?",
+          "options": ["λ = f/v", "λ = v × f", "λ = v/f", "λ = f + v"],
+          "answer": "λ = v/f",
+          "explanation": "La relation fondamentale des ondes est : v = λ × f, soit λ = v/f. Pour la lumière visible : λ est entre 400 nm (violet) et 700 nm (rouge).",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "phy_015",
+          "question": "Quelle est la puissance d'un appareil électrique de résistance 100 Ω traversé par un courant de 2 A ?",
+          "options": ["50 W", "100 W", "200 W", "400 W"],
+          "answer": "400 W",
+          "explanation": "Puissance P = R × I² = 100 × 2² = 100 × 4 = 400 W. On peut aussi utiliser P = U × I avec U = R × I = 200 V, donc P = 200 × 2 = 400 W.",
+          "difficulty": "moyen"
+        }
+      ]
+    },
+    {
+      "id": "sciences_numeriques",
+      "label": "Sciences Numériques",
+      "description": "Informatique, algorithmique, réseaux et culture numérique",
+      "questions": [
+        {
+          "id": "sn_001",
+          "question": "Que signifie l'acronyme HTML ?",
+          "options": [
+            "Hyper Text Markup Language",
+            "High Tech Modern Language",
+            "Hyper Text Modern Links",
+            "Home Tool Markup Language"
+          ],
+          "answer": "Hyper Text Markup Language",
+          "explanation": "HTML (HyperText Markup Language) est le langage de balisage standard utilisé pour créer des pages web. Il définit la structure et le contenu des pages.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "sn_002",
+          "question": "Quelle est la représentation binaire du nombre décimal 10 ?",
+          "options": ["1000", "1010", "1100", "0101"],
+          "answer": "1010",
+          "explanation": "10 en décimal = 8 + 2 = 1×2³ + 0×2² + 1×2¹ + 0×2⁰ = 1010 en binaire. Méthode des divisions successives : 10÷2=5 r.0 ; 5÷2=2 r.1 ; 2÷2=1 r.0 ; 1÷2=0 r.1 → on lit les restes à l'envers : 1010.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "sn_003",
+          "question": "Qu'est-ce qu'un algorithme ?",
+          "options": [
+            "Un langage de programmation",
+            "Un logiciel antivirus",
+            "Une suite d'instructions ordonnées pour résoudre un problème",
+            "Un composant matériel d'un ordinateur"
+          ],
+          "answer": "Une suite d'instructions ordonnées pour résoudre un problème",
+          "explanation": "Un algorithme est une suite finie et ordonnée d'instructions permettant de résoudre un problème ou d'accomplir une tâche. Il est indépendant du langage de programmation utilisé.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "sn_004",
+          "question": "Combien d'octets contient 1 kilooctet (Ko) ?",
+          "options": ["100", "1000", "1024", "512"],
+          "answer": "1024",
+          "explanation": "1 kilooctet (Ko) = 2¹⁰ = 1024 octets. C'est une puissance de 2, car les systèmes informatiques fonctionnent en base binaire.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "sn_005",
+          "question": "Quel protocole est utilisé pour l'envoi sécurisé de pages web ?",
+          "options": ["HTTP", "FTP", "HTTPS", "SMTP"],
+          "answer": "HTTPS",
+          "explanation": "HTTPS (HyperText Transfer Protocol Secure) est la version sécurisée de HTTP. Il utilise le protocole TLS/SSL pour chiffrer les communications entre le navigateur et le serveur.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "sn_006",
+          "question": "Qu'est-ce qu'une base de données relationnelle ?",
+          "options": [
+            "Une base de données stockée en ligne",
+            "Une base de données organisée en tables liées entre elles",
+            "Une base de données accessible via Bluetooth",
+            "Une base de données uniquement pour les relations sociales"
+          ],
+          "answer": "Une base de données organisée en tables liées entre elles",
+          "explanation": "Une base de données relationnelle organise les données en tables (relations) liées entre elles par des clés. SQL est le langage standard pour les interroger. Exemples : MySQL, PostgreSQL, Oracle.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "sn_007",
+          "question": "Quelle est la fonction du DNS dans un réseau informatique ?",
+          "options": [
+            "Sécuriser les connexions réseau",
+            "Traduire les noms de domaine en adresses IP",
+            "Accélérer le débit de connexion",
+            "Filtrer les contenus indésirables"
+          ],
+          "answer": "Traduire les noms de domaine en adresses IP",
+          "explanation": "Le DNS (Domain Name System) traduit les noms de domaine lisibles (ex: www.google.com) en adresses IP numériques (ex: 142.250.74.46) que les machines peuvent comprendre.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "sn_008",
+          "question": "Quel type d'attaque consiste à se faire passer pour un site légitime pour voler des informations ?",
+          "options": ["Ransomware", "Phishing", "DDoS", "Spyware"],
+          "answer": "Phishing",
+          "explanation": "Le phishing (hameçonnage) est une technique d'arnaque consistant à imiter des sites ou emails légitimes pour tromper les utilisateurs et voler leurs données personnelles.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "sn_009",
+          "question": "Qu'est-ce que la complexité temporelle O(n) signifie pour un algorithme ?",
+          "options": [
+            "L'algorithme s'exécute toujours en 1 seconde",
+            "Le temps d'exécution est constant",
+            "Le temps d'exécution est proportionnel à la taille de l'entrée",
+            "L'algorithme ne peut traiter que n éléments"
+          ],
+          "answer": "Le temps d'exécution est proportionnel à la taille de l'entrée",
+          "explanation": "La notation O(n) (Big O) indique que le temps d'exécution croît linéairement avec la taille n de l'entrée. Si n double, le temps double aussi. O(1) = constant, O(n²) = quadratique.",
+          "difficulty": "difficile"
+        },
+        {
+          "id": "sn_010",
+          "question": "Qu'est-ce qu'une adresse IP de classe C ?",
+          "options": [
+            "Une adresse commençant par 0-127",
+            "Une adresse commençant par 128-191",
+            "Une adresse commençant par 192-223",
+            "Une adresse commençant par 224-255"
+          ],
+          "answer": "Une adresse commençant par 192-223",
+          "explanation": "Les adresses IP de classe C commencent par 192 à 223 (110xxxxx en binaire). Elles permettent jusqu'à 254 hôtes par réseau. Le réseau 192.168.x.x est couramment utilisé en réseau local.",
+          "difficulty": "difficile"
+        },
+        {
+          "id": "sn_011",
+          "question": "Quel langage est principalement utilisé pour styliser les pages web ?",
+          "options": ["JavaScript", "Python", "CSS", "PHP"],
+          "answer": "CSS",
+          "explanation": "Le CSS (Cascading Style Sheets) est le langage utilisé pour définir la présentation visuelle des pages web : couleurs, polices, mises en page, animations, etc.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "sn_012",
+          "question": "Qu'est-ce que la récursivité en programmation ?",
+          "options": [
+            "Une boucle qui ne s'arrête jamais",
+            "Une fonction qui s'appelle elle-même",
+            "Un algorithme de tri rapide",
+            "Une structure de données en arbre"
+          ],
+          "answer": "Une fonction qui s'appelle elle-même",
+          "explanation": "La récursivité est une technique où une fonction s'appelle elle-même pour résoudre un problème. Elle nécessite une condition d'arrêt pour éviter une récursion infinie. Ex : calcul factorielle, tri fusion.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "sn_013",
+          "question": "Quelle est la différence entre RAM et ROM ?",
+          "options": [
+            "La RAM est permanente, la ROM est temporaire",
+            "La RAM est temporaire (volatile), la ROM est permanente",
+            "La RAM est plus lente que la ROM",
+            "Il n'y a aucune différence"
+          ],
+          "answer": "La RAM est temporaire (volatile), la ROM est permanente",
+          "explanation": "La RAM (Random Access Memory) est une mémoire volatile : son contenu est perdu à l'extinction. La ROM (Read-Only Memory) est permanente et conserve ses données même sans alimentation.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "sn_014",
+          "question": "Que représente le modèle OSI en réseau informatique ?",
+          "options": [
+            "Un protocole de sécurité",
+            "Un système d'exploitation réseau",
+            "Un modèle en 7 couches décrivant les fonctions de communication",
+            "Un type de câble réseau"
+          ],
+          "answer": "Un modèle en 7 couches décrivant les fonctions de communication",
+          "explanation": "Le modèle OSI (Open Systems Interconnection) est une architecture en 7 couches : Physique, Liaison, Réseau, Transport, Session, Présentation, Application. Il standardise les communications réseau.",
+          "difficulty": "difficile"
+        },
+        {
+          "id": "sn_015",
+          "question": "Qu'est-ce que le cloud computing ?",
+          "options": [
+            "Un réseau de météorologie informatisé",
+            "La fourniture de services informatiques via Internet",
+            "Un type de virus informatique",
+            "Un langage de programmation"
+          ],
+          "answer": "La fourniture de services informatiques via Internet",
+          "explanation": "Le cloud computing est la mise à disposition de ressources informatiques (stockage, puissance de calcul, logiciels) via Internet, à la demande. Exemples : AWS, Google Cloud, Microsoft Azure.",
+          "difficulty": "facile"
+        }
+      ]
+    },
+    {
+      "id": "economie",
+      "label": "Économie",
+      "description": "Microéconomie, macroéconomie, finance et économie ivoirienne",
+      "questions": [
+        {
+          "id": "eco_001",
+          "question": "Qu'est-ce que le PIB (Produit Intérieur Brut) ?",
+          "options": [
+            "La valeur totale des importations d'un pays",
+            "La valeur totale des biens et services produits dans un pays sur une période donnée",
+            "Le total des dépenses publiques d'un gouvernement",
+            "La somme des salaires versés dans un pays"
+          ],
+          "answer": "La valeur totale des biens et services produits dans un pays sur une période donnée",
+          "explanation": "Le PIB mesure la richesse créée par un pays sur une période (généralement un an). Il peut être calculé par la production, par les revenus ou par les dépenses.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "eco_002",
+          "question": "Quelle institution gère la politique monétaire des pays de l'UEMOA ?",
+          "options": ["FMI", "Banque Mondiale", "BCEAO", "BAD"],
+          "answer": "BCEAO",
+          "explanation": "La Banque Centrale des États de l'Afrique de l'Ouest (BCEAO) gère la politique monétaire des 8 pays membres de l'UEMOA, dont la Côte d'Ivoire, en émettant le franc CFA.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "eco_003",
+          "question": "Qu'est-ce que l'inflation ?",
+          "options": [
+            "La hausse généralisée et durable des prix",
+            "La baisse des salaires",
+            "L'augmentation du chômage",
+            "La diminution des importations"
+          ],
+          "answer": "La hausse généralisée et durable des prix",
+          "explanation": "L'inflation est la hausse généralisée et durable du niveau des prix dans une économie. Elle entraîne une perte du pouvoir d'achat de la monnaie. Son opposé est la déflation.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "eco_004",
+          "question": "Qu'est-ce que la loi de l'offre et de la demande prédit ?",
+          "options": [
+            "Plus le prix augmente, plus la demande augmente",
+            "Si la demande excède l'offre, le prix tend à baisser",
+            "Si la demande excède l'offre, le prix tend à augmenter",
+            "L'offre et la demande sont toujours égales"
+          ],
+          "answer": "Si la demande excède l'offre, le prix tend à augmenter",
+          "explanation": "Selon la loi de l'offre et de la demande, si la demande excède l'offre, le prix tend à augmenter ; si l'offre excède la demande, le prix tend à baisser. L'équilibre se forme au prix de marché.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "eco_005",
+          "question": "Qu'est-ce que le taux de chômage mesure ?",
+          "options": [
+            "Le nombre total de personnes sans emploi",
+            "La proportion de personnes actives sans emploi et en cherchant un",
+            "Le nombre de postes vacants dans une économie",
+            "La part des inactifs dans la population totale"
+          ],
+          "answer": "La proportion de personnes actives sans emploi et en cherchant un",
+          "explanation": "Le taux de chômage = (Nombre de chômeurs / Population active) × 100. Un chômeur est une personne sans emploi, disponible pour travailler et recherchant activement un emploi.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "eco_006",
+          "question": "Quelle est la principale mission du Fonds Monétaire International (FMI) ?",
+          "options": [
+            "Financer les projets de développement en Afrique",
+            "Assurer la stabilité du système monétaire international",
+            "Contrôler le commerce mondial",
+            "Octroyer des prêts immobiliers"
+          ],
+          "answer": "Assurer la stabilité du système monétaire international",
+          "explanation": "Le FMI a pour mission principale de surveiller le système monétaire international, d'aider les pays en difficulté financière et de promouvoir la stabilité des taux de change.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "eco_007",
+          "question": "Qu'est-ce qu'un budget en déficit ?",
+          "options": [
+            "Quand les recettes sont supérieures aux dépenses",
+            "Quand les dépenses sont supérieures aux recettes",
+            "Quand le budget est exactement équilibré",
+            "Quand un pays n'a plus de réserves en devises"
+          ],
+          "answer": "Quand les dépenses sont supérieures aux recettes",
+          "explanation": "Un budget est en déficit quand les dépenses (charges) dépassent les recettes (revenus). Le gouvernement doit alors s'endetter pour financer l'écart. L'inverse est l'excédent budgétaire.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "eco_008",
+          "question": "Qu'est-ce que la balance commerciale ?",
+          "options": [
+            "Le bilan financier des banques d'un pays",
+            "La différence entre les exportations et les importations de biens",
+            "Le budget total du gouvernement",
+            "La valeur des réserves en or d'un pays"
+          ],
+          "answer": "La différence entre les exportations et les importations de biens",
+          "explanation": "La balance commerciale = Exportations - Importations de biens. Elle est excédentaire si les exportations dépassent les importations, déficitaire dans le cas contraire.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "eco_009",
+          "question": "Quel organisme est chargé de réguler les marchés financiers en Côte d'Ivoire ?",
+          "options": ["BCEAO", "BRVM", "AMF-UMOA", "Trésor Public"],
+          "answer": "AMF-UMOA",
+          "explanation": "L'AMF-UMOA (Autorité des Marchés Financiers de l'Union Monétaire Ouest Africaine) est l'organe de régulation des marchés financiers dans la zone UEMOA, incluant la Côte d'Ivoire.",
+          "difficulty": "difficile"
+        },
+        {
+          "id": "eco_010",
+          "question": "Qu'est-ce que le libre-échange ?",
+          "options": [
+            "L'échange de biens sans aucune contrainte ni taxe entre pays",
+            "Le troc entre nations africaines",
+            "L'échange de technologies gratuitement",
+            "La libre circulation des capitaux uniquement"
+          ],
+          "answer": "L'échange de biens sans aucune contrainte ni taxe entre pays",
+          "explanation": "Le libre-échange est un régime commercial dans lequel les échanges de biens et services entre pays se font sans barrières douanières ni restrictions. L'OMC en est le principal promoteur mondial.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "eco_011",
+          "question": "Quelle est la différence entre la microéconomie et la macroéconomie ?",
+          "options": [
+            "La microéconomie étudie les individus et entreprises, la macroéconomie l'économie dans son ensemble",
+            "La microéconomie traite des pays pauvres, la macroéconomie des pays riches",
+            "Il n'y a aucune différence",
+            "La macroéconomie étudie les marchés locaux"
+          ],
+          "answer": "La microéconomie étudie les individus et entreprises, la macroéconomie l'économie dans son ensemble",
+          "explanation": "La microéconomie analyse les comportements individuels (consommateurs, entreprises, marchés). La macroéconomie étudie l'économie globale : PIB, chômage, inflation, politique monétaire.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "eco_012",
+          "question": "Qu'est-ce que la privatisation ?",
+          "options": [
+            "Le transfert d'entreprises publiques au secteur privé",
+            "La nationalisation d'entreprises privées",
+            "La fermeture d'entreprises publiques",
+            "La création de nouvelles entreprises publiques"
+          ],
+          "answer": "Le transfert d'entreprises publiques au secteur privé",
+          "explanation": "La privatisation est le processus par lequel l'État cède la propriété ou la gestion d'entreprises publiques à des acteurs privés. Elle vise généralement à améliorer l'efficacité et réduire les dépenses publiques.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "eco_013",
+          "question": "Quelle est la principale source de revenus de l'État ivoirien ?",
+          "options": ["Les dons des partenaires", "Les recettes fiscales", "Les emprunts extérieurs", "Les exportations de pétrole"],
+          "answer": "Les recettes fiscales",
+          "explanation": "Comme dans la plupart des États, les recettes fiscales (impôts, taxes, droits de douane) constituent la principale source de financement du budget de l'État ivoirien.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "eco_014",
+          "question": "Que signifie IDE dans le contexte économique ?",
+          "options": [
+            "Indice de Développement Économique",
+            "Investissement Direct à l'Étranger",
+            "Impôt sur le Développement des Entreprises",
+            "Indice de Dépenses de l'État"
+          ],
+          "answer": "Investissement Direct à l'Étranger",
+          "explanation": "L'IDE (Investissement Direct à l'Étranger) désigne les investissements réalisés par des entreprises ou particuliers dans un pays étranger dans le but d'exercer une influence durable sur la gestion d'une entreprise.",
+          "difficulty": "difficile"
+        },
+        {
+          "id": "eco_015",
+          "question": "Quelle est la relation entre taux d'intérêt et investissement selon la théorie keynésienne ?",
+          "options": [
+            "Taux d'intérêt élevé → investissement élevé",
+            "Taux d'intérêt élevé → investissement faible",
+            "Aucune relation entre les deux",
+            "Taux d'intérêt et investissement évoluent toujours ensemble"
+          ],
+          "answer": "Taux d'intérêt élevé → investissement faible",
+          "explanation": "Selon la théorie keynésienne, un taux d'intérêt élevé augmente le coût du crédit, ce qui décourage l'investissement des entreprises. Inversement, des taux bas stimulent l'investissement et la croissance.",
+          "difficulty": "difficile"
+        }
+      ]
+    },
+    {
+      "id": "francais",
+      "label": "Français",
+      "description": "Grammaire, conjugaison, orthographe, littérature et expression écrite",
+      "questions": [
+        {
+          "id": "fr_001",
+          "question": "Quel est le féminin du mot « acteur » ?",
+          "options": ["Acteure", "Actrice", "Acteuse", "Acteurse"],
+          "answer": "Actrice",
+          "explanation": "Le féminin de « acteur » est « actrice ». Les mots en -eur forment souvent leur féminin en -rice (directeur/directrice, auteur/autrice, etc.).",
+          "difficulty": "facile"
+        },
+        {
+          "id": "fr_002",
+          "question": "Quelle est la nature du mot souligné : « Il court vite. » (vite)",
+          "options": ["Adjectif qualificatif", "Nom commun", "Adverbe", "Verbe"],
+          "answer": "Adverbe",
+          "explanation": "Dans « Il court vite », le mot « vite » est un adverbe de manière. Il modifie le verbe « court ». Les adverbes sont invariables.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "fr_003",
+          "question": "Conjuguez le verbe « être » à la première personne du pluriel du futur simple.",
+          "options": ["Nous étions", "Nous serons", "Nous sommes", "Nous soyons"],
+          "answer": "Nous serons",
+          "explanation": "Au futur simple, « être » se conjugue : je serai, tu seras, il/elle sera, nous serons, vous serez, ils/elles seront. Le radical du futur de « être » est « ser- ».",
+          "difficulty": "facile"
+        },
+        {
+          "id": "fr_004",
+          "question": "Quelle figure de style est utilisée dans : « Ses yeux sont des étoiles » ?",
+          "options": ["Métaphore", "Comparaison", "Personnification", "Hyperbole"],
+          "answer": "Métaphore",
+          "explanation": "Une métaphore établit une comparaison implicite sans utiliser d'outil comparatif (comme, tel, pareil à). Ici, les yeux SONT des étoiles. Si on avait « comme des étoiles », ce serait une comparaison.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "fr_005",
+          "question": "Quelle est l'orthographe correcte ?",
+          "options": ["Il fesait beau.", "Il faisait beau.", "Il fezait beau.", "Il faisait beau."],
+          "answer": "Il faisait beau.",
+          "explanation": "Le verbe « faire » à l'imparfait donne « faisait » (je faisais, tu faisais, il faisait...). Attention à ne pas confondre avec « fesait » qui est une faute fréquente.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "fr_006",
+          "question": "Quel auteur africain francophone a écrit « Une vie de boy » ?",
+          "options": ["Ahmadou Kourouma", "Ferdinand Oyono", "Cheikh Hamidou Kane", "Mongo Beti"],
+          "answer": "Ferdinand Oyono",
+          "explanation": "« Une vie de boy » (1956) est un roman du Camerounais Ferdinand Oyono qui dénonce les abus de la colonisation. Il est étudié dans de nombreux lycées africains.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "fr_007",
+          "question": "Qu'est-ce qu'un homonyme ?",
+          "options": [
+            "Un mot qui a le même sens qu'un autre",
+            "Un mot qui a le sens contraire d'un autre",
+            "Un mot qui se prononce ou s'écrit de la même façon qu'un autre",
+            "Un mot dérivé d'un autre mot"
+          ],
+          "answer": "Un mot qui se prononce ou s'écrit de la même façon qu'un autre",
+          "explanation": "Les homonymes sont des mots qui ont la même prononciation (homophones) ou la même orthographe (homographes) mais des sens différents. Ex : « ver » (animal), « verre » (récipient), « vert » (couleur), « vers » (direction).",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "fr_008",
+          "question": "Accordez correctement : « Les filles que j'ai vu___ danser »",
+          "options": ["vues", "vu", "vus", "vue"],
+          "answer": "vu",
+          "explanation": "Le participe passé du verbe « voir » employé avec « avoir » s'accorde avec le COD si celui-ci est placé AVANT. Ici, « que » (les filles) est COD mais c'est l'objet de « danser » (elles dansent), donc pas d'accord : « vu ».",
+          "difficulty": "difficile"
+        },
+        {
+          "id": "fr_009",
+          "question": "Quelle est la fonction de « à sa mère » dans : « Il offre un cadeau à sa mère » ?",
+          "options": ["COD", "COI", "Attribut du sujet", "Complément circonstanciel"],
+          "answer": "COI",
+          "explanation": "« à sa mère » est un Complément d'Objet Indirect (COI). Il est relié au verbe par la préposition « à ». On peut se demander : « Il offre un cadeau à qui ? » → à sa mère.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "fr_010",
+          "question": "Quelle est la forme passive de : « Le lion mange la gazelle » ?",
+          "options": [
+            "La gazelle mange le lion",
+            "La gazelle est mangée par le lion",
+            "Le lion est mangé par la gazelle",
+            "La gazelle a été mangée le lion"
+          ],
+          "answer": "La gazelle est mangée par le lion",
+          "explanation": "Pour mettre à la voix passive : le COD devient sujet, le sujet devient complément d'agent (introduit par « par » ou « de »), le verbe se conjugue avec « être » + participe passé accordé.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "fr_011",
+          "question": "Quel temps verbal exprime une action passée terminée, antérieure à une autre action passée ?",
+          "options": ["L'imparfait", "Le passé simple", "Le plus-que-parfait", "Le passé composé"],
+          "answer": "Le plus-que-parfait",
+          "explanation": "Le plus-que-parfait exprime une action antérieure à une autre action passée. Ex : « Quand il arriva, elle était déjà partie. » → « était partie » (plus-que-parfait) est antérieure à « arriva ».",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "fr_012",
+          "question": "Qui a écrit « Les Misérables » ?",
+          "options": ["Gustave Flaubert", "Honoré de Balzac", "Victor Hugo", "Émile Zola"],
+          "answer": "Victor Hugo",
+          "explanation": "« Les Misérables » est un roman de Victor Hugo publié en 1862. C'est une œuvre majeure de la littérature française qui dénonce les injustices sociales du XIXe siècle.",
+          "difficulty": "facile"
+        },
+        {
+          "id": "fr_013",
+          "question": "Quelle est la différence entre « davantage » et « d'avantage » ?",
+          "options": [
+            "Il n'y a aucune différence",
+            "« davantage » = plus ; « d'avantage » = de bénéfice/profit",
+            "« davantage » est familier, « d'avantage » est formel",
+            "« d'avantage » s'utilise uniquement au pluriel"
+          ],
+          "answer": "« davantage » = plus ; « d'avantage » = de bénéfice/profit",
+          "explanation": "« Davantage » (adverbe) signifie « plus » : « Je travaille davantage ». « D'avantage » = de + avantage (nom) : « Il tire d'avantage de cette situation ». C'est une erreur fréquente.",
+          "difficulty": "difficile"
+        },
+        {
+          "id": "fr_014",
+          "question": "Qu'est-ce que le subjonctif exprime principalement ?",
+          "options": [
+            "Une action certaine et réelle",
+            "Une action passée",
+            "Le doute, la volonté, le souhait, la crainte",
+            "Une action future certaine"
+          ],
+          "answer": "Le doute, la volonté, le souhait, la crainte",
+          "explanation": "Le subjonctif exprime ce qui est incertain, souhaité, craint ou voulu. On l'utilise après : vouloir que, craindre que, douter que, bien que, pour que, il faut que, etc.",
+          "difficulty": "moyen"
+        },
+        {
+          "id": "fr_015",
+          "question": "Dans quelle œuvre littéraire ivoirienne retrouve-t-on le personnage de Fama ?",
+          "options": ["« Le Soleil des Indépendances »", "« Allah n'est pas obligé »", "« Une vie de boy »", "« L'Enfant noir »"],
+          "answer": "« Le Soleil des Indépendances »",
+          "explanation": "Fama Doumbouya est le personnage central du roman « Le Soleil des Indépendances » (1968) d'Ahmadou Kourouma, écrivain ivoirien. C'est une œuvre majeure de la littérature africaine francophone.",
+          "difficulty": "difficile"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "total_categories": 6,
+    "total_questions": 90,
+    "questions_per_category": 15,
+    "difficulty_levels": ["facile", "moyen", "difficile"],
+    "created_at": "2026-04-14",
+    "target": "Concours ivoiriens (Bac, Bac+2, Bac+3, Concours administratifs)"
+  }
+}
