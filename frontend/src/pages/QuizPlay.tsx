@@ -138,15 +138,6 @@ const QuizPlay = () => {
       .catch(() => null);
   }, [id, navigate]);
 
-  // ── Error / Not found ─────────────────────────────────────────────────────
-  if (!preview && !started) {
-    return (
-      <div className="container flex min-h-[60vh] items-center justify-center py-12">
-        <DashboardLoader />
-      </div>
-    );
-  }
-
   // ── Challenge Toast ───────────────────────────────────────────────────────
   useEffect(() => {
     const query = new URLSearchParams(location.search);
@@ -158,6 +149,16 @@ const QuizPlay = () => {
       });
     }
   }, [location.search, preview, started]);
+
+  // ── Error / Not found ─────────────────────────────────────────────────────
+  if (!preview && !started) {
+    return (
+      <div className="container flex min-h-[60vh] items-center justify-center py-12">
+        <DashboardLoader />
+      </div>
+    );
+  }
+
 
   // ── Pre-start screen ──────────────────────────────────────────────────────
   if (!started && preview) {
