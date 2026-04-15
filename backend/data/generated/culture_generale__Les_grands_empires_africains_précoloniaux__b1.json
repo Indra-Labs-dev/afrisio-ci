@@ -1,0 +1,247 @@
+{
+  "category_id": "culture_generale",
+  "topic": "Les grands empires africains précoloniaux",
+  "questions": [
+    {
+      "question": "Identifiez l'empire qui a atteint son apogée au XIVe siècle sous le règne de Mansa Musa.",
+      "explanation": "L'Empire du Mali était l'un des plus riches au monde grâce au contrôle des routes commerciales de l'or et du sel.",
+      "difficulty": "medium",
+      "options": [
+        "Empire Songhaï",
+        "Empire du Ghana",
+        "Empire du Mali",
+        "Empire de Kanem-Bornou"
+      ],
+      "answer": "Empire du Mali"
+    },
+    {
+      "question": "Le titre de 'Mansa' désignait quel type de fonction au sein de l'Empire du Mali ?",
+      "explanation": "Le terme Mansa signifie littéralement 'roi des rois' ou empereur, symbolisant une autorité suprême sur plusieurs provinces.",
+      "difficulty": "medium",
+      "options": [
+        "Gouverneur provincial",
+        "Chef militaire",
+        "Empereur",
+        "Prêtre suprême"
+      ],
+      "answer": "Empereur"
+    },
+    {
+      "question": "Déterminez l'empire sahélien célèbre pour sa capitale Gao et son rayonnement intellectuel.",
+      "explanation": "L'Empire Songhaï a succédé au Mali et a fait de Gao et Tombouctou des centres majeurs d'apprentissage islamique.",
+      "difficulty": "medium",
+      "options": [
+        "Empire Songhaï",
+        "Empire de l'Oyo",
+        "Empire de Benin",
+        "Empire de Kush"
+      ],
+      "answer": "Empire Songhaï"
+    },
+    {
+      "question": "Quel métal constituait l'un des piliers de la richesse de l'Empire du Ghana (Wagadou) ?",
+      "explanation": "Le Ghana était surnommé le 'pays de l'or' car il contrôlait le commerce entre les mines d'or du sud et les caravanes de sel du nord.",
+      "difficulty": "medium",
+      "options": [
+        "Le fer",
+        "L'or",
+        "Le cuivre",
+        "L'étain"
+      ],
+      "answer": "L'or"
+    },
+    {
+      "question": "Citez la ville qui fut le centre intellectuel et religieux majeur de l'Afrique de l'Ouest médiévale.",
+      "explanation": "Tombouctou, située au bord du Niger, abritait des universités et des bibliothèques renommées dans tout le monde musulman.",
+      "difficulty": "medium",
+      "options": [
+        "Lagos",
+        "Tombouctou",
+        "Abidjan",
+        "Dakar"
+      ],
+      "answer": "Tombouctou"
+    },
+    {
+      "question": "Quel empire était situé dans la région de l'actuel Zimbabwe et était célèbre pour ses constructions en pierre sans mortier ?",
+      "explanation": "Le Grand Zimbabwe témoigne de l'ingéniosité architecturale d'une civilisation prospère basée sur l'élevage et le commerce.",
+      "difficulty": "medium",
+      "options": [
+        "Empire de Mutapa",
+        "Empire du Zimbabwe",
+        "Empire de Mapungubwe",
+        "Empire de Karanga"
+      ],
+      "answer": "Empire du Zimbabwe"
+    },
+    {
+      "question": "Nommez l'empire qui occupait une vaste zone autour du lac Tchad.",
+      "explanation": "L'Empire de Kanem-Bornou a exercé une influence durable sur les routes transsahariennes et les échanges autour du lac Tchad.",
+      "difficulty": "medium",
+      "options": [
+        "Empire de Songhaï",
+        "Empire de Kanem-Bornou",
+        "Empire de Mossi",
+        "Empire de Dahomey"
+      ],
+      "answer": "Empire de Kanem-Bornou"
+    },
+    {
+      "question": "L'Empire de Benin, situé dans l'actuel Nigeria, était particulièrement reconnu pour quel type de production artistique ?",
+      "explanation": "Les bronzes du Bénin sont des chefs-d'œuvre de la fonderie à la cire perdue, utilisés pour documenter l'histoire de la cour.",
+      "difficulty": "medium",
+      "options": [
+        "La poterie fine",
+        "Les sculptures en bronze",
+        "Le tissage de la soie",
+        "La marqueterie de bois"
+      ],
+      "answer": "Les sculptures en bronze"
+    },
+    {
+      "question": "Quel était l'acteur principal du commerce transsaharien, permettant l'échange de l'or contre le sel ?",
+      "explanation": "Les caravanes de chameaux étaient essentielles pour traverser le désert et relier l'Afrique subsaharienne au monde méditerranéen.",
+      "difficulty": "medium",
+      "options": [
+        "Les navires phéniciens",
+        "Les caravanes de chameaux",
+        "Les explorateurs vikings",
+        "Les marchands de la route de la soie"
+      ],
+      "answer": "Les caravanes de chameaux"
+    },
+    {
+      "question": "Identifiez la civilisation nilotique qui a précédé l'Égypte pharaonique ou a coexisté avec elle.",
+      "explanation": "Le royaume de Kush, situé au Soudan actuel, était une puissance majeure capable de conquérir l'Égypte (les pharaons noirs).",
+      "difficulty": "medium",
+      "options": [
+        "Empire d'Axum",
+        "Royaume de Kush",
+        "Empire de Mali",
+        "Empire de Bornou"
+      ],
+      "answer": "Royaume de Kush"
+    },
+    {
+      "question": "Quel empire de la zone forestière était réputé pour sa puissance militaire et son organisation centralisée ?",
+      "explanation": "L'Empire du Dahomey possédait une armée très organisée, incluant notamment les célèbres Amazones (Mino).",
+      "difficulty": "medium",
+      "options": [
+        "Empire Songhaï",
+        "Empire du Dahomey",
+        "Empire du Ghana",
+        "Empire de Kanem"
+      ],
+      "answer": "Empire du Dahomey"
+    },
+    {
+      "question": "L'empire d'Axum, situé dans la Corne de l'Afrique, s'est distingué par son adoption précoce de quelle religion ?",
+      "explanation": "Axum est devenu l'un des premiers grands empires au monde à adopter le christianisme au IVe siècle.",
+      "difficulty": "medium",
+      "options": [
+        "L'Islam",
+        "Le Bouddhisme",
+        "Le Christianisme",
+        "L'Hindouisme"
+      ],
+      "answer": "Le Christianisme"
+    },
+    {
+      "question": "Quelles marchandises étaient principalement échangées dans le commerce transsaharien en provenance du Nord ?",
+      "explanation": "Le sel était une ressource vitale, souvent échangée à poids égal contre l'or dans certaines régions du Sahel.",
+      "difficulty": "medium",
+      "options": [
+        "Le sel",
+        "Le thé",
+        "La soie",
+        "L'épice"
+      ],
+      "answer": "Le sel"
+    },
+    {
+      "question": "Le royaume d'Oyo, situé dans l'actuel Nigeria, était principalement une puissance de quel type ?",
+      "explanation": "L'Empire Yoruba d'Oyo reposait sur une cavalerie puissante et un système politique complexe de contre-pouvoirs.",
+      "difficulty": "medium",
+      "options": [
+        "Maritime",
+        "Militaire et politique",
+        "Uniquement religieuse",
+        "Agricole de subsistance"
+      ],
+      "answer": "Militaire et politique"
+    },
+    {
+      "question": "Quel dirigeant du Mali est célèbre pour son pèlerinage à La Mecque ayant causé une inflation de l'or ?",
+      "explanation": "Mansa Musa a distribué tellement d'or durant son passage au Caire qu'il a déstabilisé le cours du métal précieux.",
+      "difficulty": "medium",
+      "options": [
+        "Sundiata Keïta",
+        "Askia Mohammed",
+        "Mansa Musa",
+        "Sonni Ali"
+      ],
+      "answer": "Mansa Musa"
+    },
+    {
+      "question": "L'Empire de Mossi, dans l'actuel Burkina Faso, se caractérisait par quoi ?",
+      "explanation": "Les Mossi ont construit un État centralisé et guerrier qui a résisté longtemps aux influences extérieures.",
+      "difficulty": "medium",
+      "options": [
+        "Une démocratie directe",
+        "Une structure étatique centralisée",
+        "Une économie basée sur la pêche",
+        "Une absence de hiérarchie"
+      ],
+      "answer": "Une structure étatique centralisée"
+    },
+    {
+      "question": "Qui fut le fondateur mythique de l'Empire du Mali ?",
+      "explanation": "Sundiata Keïta, surnommé le 'Roi Lion', est le fondateur historique qui a unifié les clans Mandingues.",
+      "difficulty": "medium",
+      "options": [
+        "Mansa Musa",
+        "Sundiata Keïta",
+        "Askia le Grand",
+        "Ewuare"
+      ],
+      "answer": "Sundiata Keïta"
+    },
+    {
+      "question": "Quel élément géographique facilitait les échanges de l'Empire Songhaï ?",
+      "explanation": "Le fleuve Niger servait d'artère vitale pour le transport des marchandises et la communication entre les cités.",
+      "difficulty": "medium",
+      "options": [
+        "Le désert du Sahara",
+        "Le fleuve Niger",
+        "La forêt équatoriale",
+        "La chaîne de l'Atlas"
+      ],
+      "answer": "Le fleuve Niger"
+    },
+    {
+      "question": "Dans quel empire la figure de l'Oba était-elle centrale ?",
+      "explanation": "L'Oba est le souverain sacré de l'Empire du Bénin, agissant comme le centre spirituel et politique de l'État.",
+      "difficulty": "medium",
+      "options": [
+        "Empire du Mali",
+        "Empire du Bénin",
+        "Empire de Kanem",
+        "Empire d'Axum"
+      ],
+      "answer": "Empire du Bénin"
+    },
+    {
+      "question": "Le commerce de l'or et du sel a principalement favorisé le développement de quelle zone ?",
+      "explanation": "Cette activité économique a permis l'essor des empires du Sahel, situés à la lisière du désert et de la savane.",
+      "difficulty": "medium",
+      "options": [
+        "La zone côtière",
+        "La zone sahélienne",
+        "La forêt tropicale",
+        "Le bassin du Congo"
+      ],
+      "answer": "La zone sahélienne"
+    }
+  ],
+  "_generated_by": "google/gemma-4-26b-a4b-it:free"
+}

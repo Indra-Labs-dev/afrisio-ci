@@ -43,8 +43,8 @@ FALLBACK_MODELS: list[str] = (
     [m.strip() for m in _fb_env.split(",") if m.strip()]
     if _fb_env
     else [
-        "meta-llama/llama-3.1-8b-instruct:free",
         "google/gemma-4-26b-a4b-it:free",
+        "meta-llama/llama-3.1-8b-instruct:free",
         "mistralai/mistral-7b-instruct:free",
         "deepseek/deepseek-r1:free",
         "microsoft/phi-3-mini-128k-instruct:free",
@@ -302,7 +302,7 @@ def generate_batch(
     retries_per_model: int = 2,
 ) -> bool:
     """Génère un batch de `count` questions avec repli automatique sur les modèles de fallback."""
-    from openai import AuthenticationError, RateLimitError
+    from openai import AuthenticationError, RateLimitError, NotFoundError
 
     prompt = PROMPT_TEMPLATE.format(
         count=count,
@@ -338,19 +338,21 @@ def generate_batch(
                 return True
 
             except AuthenticationError as e:
-                # Auth error = clé invalide pour ce modèle, passer directement au suivant
-                print(f"   🔒 Auth échouée pour [{model}] : {e} — passage au modèle suivant")
-                break  # Ne pas réessayer ce modèle
+                print(f"   🔒 Auth échouée pour [{model}] : passage au modèle suivant")
+                break
+                
+            except NotFoundError as e:
+                print(f"   🚫 Modèle introuvable [{model}] : passage au modèle suivant")
+                break
 
             except RateLimitError as e:
-                print(f"   ⏳ Rate limit [{model}] (tentative {attempt}): {e}")
+                print(f"   ⏳ Rate limit [{model}] (tentative {attempt})")
                 wait = 15 if attempt < retries_per_model else 0
                 if wait:
-                    print(f"   ⏳ Attente {wait}s…")
                     time.sleep(wait)
 
             except json.JSONDecodeError as e:
-                print(f"   ⚠️  JSON invalide [{model}] (tentative {attempt}): {e}")
+                print(f"   ⚠️ JSON invalide [{model}] (tentative {attempt}): {e}")
                 if attempt < retries_per_model:
                     time.sleep(2)
 

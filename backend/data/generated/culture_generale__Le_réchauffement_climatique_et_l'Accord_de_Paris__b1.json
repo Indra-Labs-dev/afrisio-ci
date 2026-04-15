@@ -1,0 +1,247 @@
+{
+  "category_id": "culture_generale",
+  "topic": "Le réchauffement climatique et l'Accord de Paris",
+  "questions": [
+    {
+      "question": "L'objectif principal de l'Accord de Paris, adopté en 2015, concerne la limitation de l'augmentation de la température mondiale à un niveau bien inférieur à...",
+      "explanation": "L'Accord de Paris vise à maintenir l'augmentation de la température moyenne mondiale bien en dessous de 2°C par rapport aux niveaux préindustriels, tout en poursuivant les efforts pour limiter cette hausse à 1,5°C.",
+      "difficulty": "medium",
+      "options": [
+        "1°C",
+        "2°C",
+        "3°C",
+        "4°C"
+      ],
+      "answer": "2°C"
+    },
+    {
+      "question": "Identifiez le principal gaz à effet de serre d'origine anthropique (humaine) responsable du réchauffement actuel.",
+      "explanation": "Le dioxyde de carbone (CO2) est le principal gaz émis par les activités humaines, notamment via la combustion des énergies fossiles et la déforestation.",
+      "difficulty": "medium",
+      "options": [
+        "Le méthane",
+        "Le protoxyde d'azote",
+        "Le dioxyde de carbone",
+        "L'ozone"
+      ],
+      "answer": "Le dioxyde de carbone"
+    },
+    {
+      "question": "Lors de la COP21, quel mécanisme a été instauré pour que chaque pays définisse ses propres objectifs de réduction d'émissions ?",
+      "explanation": "Les Contributions Déterminées au niveau National (CDN) sont les engagements pris par chaque pays pour réduire ses émissions de gaz à effet de serre.",
+      "difficulty": "medium",
+      "options": [
+        "Les quotas carbone",
+        "Les contributions déterminées au niveau national (CDN)",
+        "Le protocole de Kyoto",
+        "Les traités de limitation thermique"
+      ],
+      "answer": "Les contributions déterminées au niveau national (CDN)"
+    },
+    {
+      "question": "Considérez l'effet de serre : de quoi s'agit-il fondamentalement ?",
+      "explanation": "L'effet de serre est un phénomène naturel où certains gaz retiennent une partie du rayonnement infrarouge émis par la surface terrestre, maintenant ainsi une température habitable.",
+      "difficulty": "medium",
+      "options": [
+        "Une couche de gaz qui bloque la lumière du soleil",
+        "Un processus de rétention de la chaleur par l'atmosphère",
+        "Une augmentation de la couche d'ozone",
+        "Une réaction chimique entre l'oxygène et le carbone"
+      ],
+      "answer": "Un processus de rétention de la chaleur par l'atmosphère"
+    },
+    {
+      "question": "Parmi ces phénomènes, lequel est une conséquence directe de la fonte des calottes glaciaires ?",
+      "explanation": "La fonte des glaces terrestres (Antarctique, Groenland) ajoute de l'eau dans les océans, provoquant ainsi l'élévation du niveau de la mer.",
+      "difficulty": "medium",
+      "options": [
+        "L'acidification des océans",
+        "L'élévation du niveau de la mer",
+        "La diminution du sel marin",
+        "Le refroidissement des courants marins"
+      ],
+      "answer": "L'élévation du niveau de la mer"
+    },
+    {
+      "question": "Le terme 'neutralité carbone' désigne un état où...",
+      "explanation": "La neutralité carbone est atteinte lorsque les émissions de CO2 anthropiques sont équilibrées par l'absorption du CO2 par des puits de carbone (forêts, océans, technologies).",
+      "difficulty": "medium",
+      "options": [
+        "On n'émet plus aucun gaz à effet de serre",
+        "Les émissions sont compensées par des absorptions équivalentes",
+        "On utilise uniquement des énergies renouvelables",
+        "Le taux de CO2 dans l'air reste constant"
+      ],
+      "answer": "Les émissions sont compensées par des absorptions équivalentes"
+    },
+    {
+      "question": "Quelle organisation internationale coordonne les recherches scientifiques sur le climat et publie les rapports de référence ?",
+      "explanation": "Le GIEC (Groupe d'experts intergouvernemental sur l'évolution du climat) est l'organisme de référence qui synthétise les connaissances scientifiques mondiales.",
+      "difficulty": "medium",
+      "options": [
+        "L'UNESCO",
+        "L'ONU Environnement",
+        "Le GIEC",
+        "L'OMM"
+      ],
+      "answer": "Le GIEC"
+    },
+    {
+      "question": "L'acidification des océans est principalement causée par l'absorption de quel élément ?",
+      "explanation": "En absorbant le CO2 atmosphérique, l'eau de mer subit une réaction chimique qui diminue son pH, rendant l'océan plus acide.",
+      "difficulty": "medium",
+      "options": [
+        "L'azote",
+        "Le dioxyde de carbone",
+        "Le soufre",
+        "Le méthane"
+      ],
+      "answer": "Le dioxyde de carbone"
+    },
+    {
+      "question": "Dans le cadre de la transition énergétique, qu'est-ce qu'une 'énergie décarbonée' ?",
+      "explanation": "Une énergie décarbonée est une source d'énergie qui n'émet pas (ou très peu) de CO2 lors de sa production, comme le nucléaire ou les renouvelables.",
+      "difficulty": "medium",
+      "options": [
+        "Une énergie qui ne coûte rien",
+        "Une énergie qui ne produit pas de déchets",
+        "Une énergie qui n'émet pas de CO2 lors de sa production",
+        "Une énergie extraite des forêts"
+      ],
+      "answer": "Une énergie qui n'émet pas de CO2 lors de sa production"
+    },
+    {
+      "question": "Quel est l'impact majeur du réchauffement climatique sur la biodiversité ?",
+      "explanation": "Le changement rapide du climat perturbe les cycles biologiques et les habitats, entraînant un risque accru d'extinction pour de nombreuses espèces incapables de s'adapter.",
+      "difficulty": "medium",
+      "options": [
+        "Une augmentation de la diversité génétique",
+        "Une accélération de l'évolution des espèces",
+        "Une modification des habitats et un risque d'extinction",
+        "Une réduction de la compétition entre espèces"
+      ],
+      "answer": "Une modification des habitats et un risque d'extinction"
+    },
+    {
+      "question": "Le concept de 'justice climatique' met l'accent sur...",
+      "explanation": "La justice climatique souligne que les populations les plus vulnérables sont souvent celles qui ont le moins contribué aux émissions de gaz à effet de serre.",
+      "difficulty": "medium",
+      "options": [
+        "L'égalité de prix de l'énergie",
+        "La responsabilité disproportionnée des pays développés et la vulnérabilité des pays pauvres",
+        "Le droit de polluer selon les revenus",
+        "La taxation uniforme de tous les pays"
+      ],
+      "answer": "La responsabilité disproportionnée des pays développés et la vulnérabilité des pays pauvres"
+    },
+    {
+      "question": "Comment appelle-t-on le phénomène où le réchauffement de l'Arctique entraîne une fonte encore plus rapide de la glace ?",
+      "explanation": "La rétroaction de l'albédo se produit quand la glace (blanche et réfléchissante) fond, laissant place à l'océan (sombre et absorbant), ce qui accélère le réchauffement.",
+      "difficulty": "medium",
+      "options": [
+        "L'effet de serre amplifié",
+        "La boucle de rétroaction de l'albédo",
+        "Le cycle de l'azote",
+        "La dérive thermique"
+      ],
+      "answer": "La boucle de rétroaction de l'albédo"
+    },
+    {
+      "question": "Quelle est la différence majeure entre le Protocole de Kyoto et l'Accord de Paris ?",
+      "explanation": "Contrairement à Kyoto qui imposait des objectifs uniquement aux pays développés, l'Accord de Paris implique tous les pays via des engagements nationaux volontaires.",
+      "difficulty": "medium",
+      "options": [
+        "Kyoto concernait uniquement le CO2",
+        "Paris inclut tous les pays dans la lutte contre le changement climatique",
+        "Kyoto était plus ambitieux que Paris",
+        "Paris interdit l'usage du nucléaire"
+      ],
+      "answer": "Paris inclut tous les pays dans la lutte contre le changement climatique"
+    },
+    {
+      "question": "Le méthane (CH4) est un gaz dont le potentiel de réchauffement est...",
+      "explanation": "Bien que moins abondant que le CO2, le méthane possède un pouvoir de réchauffement global beaucoup plus élevé sur une période de 100 ans.",
+      "difficulty": "medium",
+      "options": [
+        "Inférieur à celui du CO2",
+        "Égal à celui du CO2",
+        "Beaucoup plus élevé que celui du CO2",
+        "Nul pour l'atmosphère"
+      ],
+      "answer": "Beaucoup plus élevé que celui du CO2"
+    },
+    {
+      "question": "Quelle est la fonction des 'puits de carbone' dans l'écosystème ?",
+      "explanation": "Les puits de carbone, comme les forêts ou les océans, sont des réservoirs naturels capables de capturer et de stocker le CO2 atmosphérique.",
+      "difficulty": "medium",
+      "options": [
+        "Émettre du gaz pour réchauffer la terre",
+        "Capturer et stocker le carbone atmosphérique",
+        "Produire de l'oxygène uniquement",
+        "Polluer les rivières"
+      ],
+      "answer": "Capturer et stocker le carbone atmosphérique"
+    },
+    {
+      "question": "L'albédo d'une surface se définit par...",
+      "explanation": "L'albédo est le pouvoir réfléchissant d'une surface : une surface très blanche (neige) a un albédo élevé, tandis qu'une surface sombre l'a un faible.",
+      "difficulty": "medium",
+      "options": [
+        "Sa capacité à absorber la chaleur",
+        "Sa capacité à réfléchir le rayonnement solaire",
+        "Sa température moyenne",
+        "Sa composition chimique"
+      ],
+      "answer": "Sa capacité à réfléchir le rayonnement solaire"
+    },
+    {
+      "question": "Que signifie l'acronyme COP dans le cadre des négociations climatiques ?",
+      "explanation": "COP signifie 'Conférence des Parties', désignant la réunion annuelle des pays signataires de la Convention-cadre des Nations Unies sur les changements climatiques.",
+      "difficulty": "medium",
+      "options": [
+        "Comité d'Organisation de la Planète",
+        "Conférence des Parties",
+        "Conseil de Protection de la Terre",
+        "Convention de l'Océan et du Paysage"
+      ],
+      "answer": "Conférence des Parties"
+    },
+    {
+      "question": "Le dégel du pergélisol (permafrost) représente un risque climatique car il libère...",
+      "explanation": "Le pergélisol contient d'énormes quantités de matières organiques qui, en dégelant, se décomposent et libèrent du CO2 et du méthane.",
+      "difficulty": "medium",
+      "options": [
+        "De l'oxygène pur",
+        "De l'eau douce uniquement",
+        "Du méthane et du CO2",
+        "De l'hélium"
+      ],
+      "answer": "Du méthane et du CO2"
+    },
+    {
+      "question": "Quelle mesure est considérée comme une stratégie d'adaptation au réchauffement ?",
+      "explanation": "L'adaptation consiste à modifier nos comportements ou infrastructures pour limiter les dégâts déjà inévitables, comme la construction de digues contre la montée des eaux.",
+      "difficulty": "medium",
+      "options": [
+        "Réduire les émissions de CO2",
+        "Construire des digues pour prévenir les inondations",
+        "Passer au véhicule électrique",
+        "Planter des arbres pour stocker le carbone"
+      ],
+      "answer": "Construire des digues pour prévenir les inondations"
+    },
+    {
+      "question": "Parmi ces énergies, laquelle est une énergie fossile ?",
+      "explanation": "Les énergies fossiles (charbon, pétrole, gaz) sont issues de la décomposition de matières organiques sur des millions d'années et sont les principales émettrices de CO2.",
+      "difficulty": "medium",
+      "options": [
+        "L'éolien",
+        "Le charbon",
+        "Le solaire",
+        "L'hydroélectrique"
+      ],
+      "answer": "Le charbon"
+    }
+  ],
+  "_generated_by": "google/gemma-4-26b-a4b-it:free"
+}
