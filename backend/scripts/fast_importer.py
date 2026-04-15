@@ -4,121 +4,143 @@ import glob
 import time
 import sys
 
-# Ajout du dossier parent au PYTHONPATH pour importer les modèles
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# ── Fix path so we can import backend modules from the scripts/ subfolder ────
+BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, BACKEND_DIR)
 
-from database import SessionLocal
+# Force the SQLite URL to point at backend/afrisio.db regardless of CWD
+os.environ.setdefault("DATABASE_URL", f"sqlite:///{os.path.join(BACKEND_DIR, 'afrisio.db')}")
+
+from database import SessionLocal, Base, engine
 from models import Category, Quiz, Question, Option
 
 def import_massive_data():
+    # Vérifier que les tables existent
+    Base.metadata.create_all(bind=engine)
     db = SessionLocal()
-    
-    generated_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "generated")
-    json_files = glob.glob(os.path.join(generated_dir, "*.json"))
-    
+
+    generated_dir = os.path.join(BACKEND_DIR, "data", "generated")
+    json_files = sorted(glob.glob(os.path.join(generated_dir, "*.json")))
+
     if not json_files:
-        print("Aucun fichier JSON trouvé dans data/generated/")
+        print(f"❌ Aucun fichier JSON trouvé dans: {generated_dir}")
+        print("   Lancez d'abord `python generate_quizzes.py` pour créer du contenu.")
         return
-        
-    print(f"Début de l'importation de {len(json_files)} fichiers de quiz...")
+
+    print(f"📦 Début de l'importation de {len(json_files)} fichier(s)...")
     start_time = time.time()
-    
-    # 1. Vérifier que la catégorie racine existe
-    db_categories = {c.name.lower(): c for c in db.query(Category).all()}
-    
+
+    # Construire un index des catégories existantes (par leur id_str stocké dans le JSON)
+    all_categories = db.query(Category).all()
+    db_categories_by_name = {c.name.lower(): c for c in all_categories}
+
+    # Map category_id string → db Category (insensible à la casse)
+    CATEGORY_ID_MAPPING = {
+        "culture_generale": "Culture Générale",
+        "mathematiques": "Mathématiques",
+        "physique": "Physique",
+        "sciences_numeriques": "Sciences Numériques",
+        "economie": "Économie",
+        "francais": "Français",
+        "histoire_geo": "Histoire-Géographie",
+        "histoire": "Histoire-Géographie",
+        "svt": "SVT",
+        "anglais": "Anglais",
+        "philosophie": "Philosophie",
+    }
+
+    def get_or_create_category(cat_id_str: str) -> Category:
+        """Retourne la catégorie DB correspondante, ou en crée une si absente."""
+        mapped_name = CATEGORY_ID_MAPPING.get(cat_id_str.lower(), cat_id_str.replace("_", " ").title())
+        # Chercher par nom exact (insensible à la casse)
+        for name_lower, cat in db_categories_by_name.items():
+            if name_lower == mapped_name.lower():
+                return cat
+        # Créer la catégorie si elle n'existe pas
+        new_cat = Category(name=mapped_name, description=f"Matière: {mapped_name}", icon="book-open")
+        db.add(new_cat)
+        db.commit()
+        db.refresh(new_cat)
+        db_categories_by_name[new_cat.name.lower()] = new_cat
+        print(f"   📁 Nouvelle catégorie créée: {mapped_name}")
+        return new_cat
+
     total_questions = 0
-    
+    skipped = 0
+
     for file_path in json_files:
+        filename = os.path.basename(file_path)
         with open(file_path, "r", encoding="utf-8") as f:
             try:
                 data = json.load(f)
-            except json.JSONDecodeError:
-                print(f"Erreur de lecture: {file_path}")
+            except json.JSONDecodeError as e:
+                print(f"   ⚠️ Fichier JSON invalide ignoré: {filename} ({e})")
+                skipped += 1
                 continue
-                
+
         cat_id_str = data.get("category_id", "divers")
         topic = data.get("topic", "Généralité")
         questions = data.get("questions", [])
-        
+
         if not questions:
+            print(f"   ⚠️ Aucune question dans {filename}, ignoré.")
+            skipped += 1
             continue
-            
-        # Création ou récupération de la catégorie (Logique basique ici)
-        # Dans un vrai scénario, elles sont déjà seedées
-        base_cat = list(db_categories.values())[0] if db_categories else None
-        if not base_cat:
-            base_cat = Category(name="Matière Importée", icon="book")
-            db.add(base_cat)
-            db.commit()
-            db.refresh(base_cat)
-            
-        # Créer le Quiz
+
+        category = get_or_create_category(cat_id_str)
+
+        # Créer un Quiz lié à cette catégorie
         quiz = Quiz(
             title=f"Quiz : {topic}",
-            description=f"Quiz d'entraînement sur le thème {topic} (Généré par IA)",
-            category_id=base_cat.id,
-            duration_minutes=len(questions) * 2,
+            description=f"Entraînement sur le thème « {topic} » — Généré automatiquement",
+            category_id=category.id,
+            duration_minutes=max(len(questions) * 2, 20),
             difficulty="medium",
-            is_active=True
+            is_active=True,
         )
         db.add(quiz)
         db.commit()
         db.refresh(quiz)
-        
-        # Bulk Insert des questions et options
-        questions_to_insert = []
+
+        # Insérer les questions et options
         for idx, q_data in enumerate(questions):
-            q_text = q_data.get("question", "")
-            diff = q_data.get("difficulty", "medium")
-            exp = q_data.get("explanation", "")
-            
+            q_text = q_data.get("question", "").strip()
+            if not q_text:
+                continue
+
             q_obj = Question(
                 quiz_id=quiz.id,
                 question_text=q_text,
                 question_type="multiple_choice",
-                explanation=exp,
-                difficulty=diff,
+                explanation=q_data.get("explanation", ""),
+                difficulty=q_data.get("difficulty", "medium"),
                 points=1,
-                order=idx + 1
+                order=idx + 1,
             )
-            questions_to_insert.append((q_obj, q_data.get("options", []), q_data.get("answer", "")))
-            
-        # Sauvegarde des questions par lot
-        q_models = [item[0] for item in questions_to_insert]
-        db.bulk_save_objects(q_models, return_defaults=True)
-        # return_defaults permet de récupérer les IDs générés par la BDD (attention, avec SQLite ça peut être tricky, tester si db.add_all est préferable sinon)
-        # Surtout que SQLite bulk_save ne renvoie pas les IDs si return_defaults=False.
-        # Fallback classique db.add_all() si IDs manquants.
-        db.commit()
-        
-        # Associer les options avec les IDs de questions récupérés
-        options_to_insert = []
-        for i, (q_model, opts, answer) in enumerate(questions_to_insert):
-            # Si return_defaults n'a pas mis à jour l'ID, on refait un add_all !
-            if not q_model.id:
-                db.add(q_model)
-                db.commit()
-                
-            for o_idx, opt_text in enumerate(opts):
-                is_correct = (str(opt_text).strip() == str(answer).strip())
-                options_to_insert.append(
-                    Option(
-                        question_id=q_model.id,
-                        option_text=opt_text,
-                        is_correct=is_correct,
-                        order=o_idx + 1
-                    )
+            db.add(q_obj)
+            db.commit()
+            db.refresh(q_obj)
+
+            opts = q_data.get("options", [])
+            answer = str(q_data.get("answer", "")).strip()
+            options_objs = [
+                Option(
+                    question_id=q_obj.id,
+                    option_text=str(opt),
+                    is_correct=(str(opt).strip() == answer),
+                    order=o_idx + 1,
                 )
-                
-        db.bulk_save_objects(options_to_insert)
+                for o_idx, opt in enumerate(opts)
+            ]
+            db.bulk_save_objects(options_objs)
+
         db.commit()
-        
         total_questions += len(questions)
-        print(f"✅ Fichier importé : {os.path.basename(file_path)} ({len(questions)} questions ajoutées)")
-        
+        print(f"   ✅ {filename} → {len(questions)} questions importées dans « {category.name} »")
+
     db.close()
     elapsed = time.time() - start_time
-    print(f"\n🎉 Importation massive terminée: {total_questions} questions insérées en {elapsed:.2f} secondes !")
+    print(f"\n🎉 Terminé : {total_questions} questions insérées en {elapsed:.1f}s ({skipped} fichier(s) ignoré(s))")
 
 if __name__ == "__main__":
     import_massive_data()
