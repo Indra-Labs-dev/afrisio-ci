@@ -12,6 +12,10 @@ import type {
   DashboardResponse,
   CourseResponse,
   CourseDetailResponse,
+  FlashcardCreate,
+  FlashcardResponse,
+  QuestionCommentCreate,
+  QuestionCommentResponse,
 } from "./types";
 
 // ─── Auth token storage ───────────────────────────────────────────────────────
@@ -98,3 +102,20 @@ export const fetchCourses = (params?: { category_id?: number }): Promise<CourseR
 
 export const fetchCourse = (id: number): Promise<CourseDetailResponse> =>
   request(`/api/courses/${id}`);
+
+// ─── Flashcards ───────────────────────────────────────────────────────────────
+export const fetchFlashcards = (): Promise<FlashcardResponse[]> =>
+  request("/api/flashcards");
+
+export const addFlashcard = (data: FlashcardCreate): Promise<FlashcardResponse> =>
+  request("/api/flashcards", { method: "POST", body: JSON.stringify(data) });
+
+export const deleteFlashcard = (id: number): Promise<void> =>
+  request(`/api/flashcards/${id}`, { method: "DELETE" });
+
+// ─── Comments ─────────────────────────────────────────────────────────────────
+export const fetchQuestionComments = (questionId: number): Promise<QuestionCommentResponse[]> =>
+  request(`/api/questions/${questionId}/comments`);
+
+export const addQuestionComment = (questionId: number, data: QuestionCommentCreate): Promise<QuestionCommentResponse> =>
+  request(`/api/questions/${questionId}/comments`, { method: "POST", body: JSON.stringify(data) });

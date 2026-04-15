@@ -161,3 +161,28 @@ class UserAnswer(Base):
     is_correct = Column(Boolean, default=False)
 
     attempt = relationship("QuizAttempt", back_populates="answers")
+
+
+class Flashcard(Base):
+    __tablename__ = "flashcards"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    question_id = Column(Integer, ForeignKey("questions.id"))
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    user = relationship("User")
+    question = relationship("Question")
+
+
+class QuestionComment(Base):
+    __tablename__ = "question_comments"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    question_id = Column(Integer, ForeignKey("questions.id"))
+    comment_text = Column(Text)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    user = relationship("User")
+    question = relationship("Question")

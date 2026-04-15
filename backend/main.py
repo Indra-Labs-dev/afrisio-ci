@@ -8,7 +8,7 @@ import secrets
 import random
 
 from database import engine, Base, get_db
-from models import Category, Quiz, Question, Option, QuizAttempt, UserAnswer, User, Course, Lesson, Badge, UserBadge
+from models import Category, Quiz, Question, Option, QuizAttempt, UserAnswer, User, Course, Lesson, Badge, UserBadge, Flashcard, QuestionComment
 from schemas import (
     CategoryResponse, QuizResponse, QuizDetailResponse, QuizResultResponse,
     QuizStartResponse, QuizSubmit, UserAnswerCreate,
@@ -16,7 +16,8 @@ from schemas import (
     CourseResponse, CourseDetailResponse, LessonResponse,
     BadgeResponse, UserBadgeResponse,
     ForgotPasswordRequest, ResetPasswordRequest,
-    AvatarUpdateRequest, AdminQuizCreate, AdminCourseCreate, QuestionCreate
+    AvatarUpdateRequest, AdminQuizCreate, AdminCourseCreate, QuestionCreate,
+    FlashcardCreate, FlashcardResponse, QuestionCommentCreate, QuestionCommentResponse
 )
 from auth import (
     hash_password, verify_password, create_access_token,
@@ -654,6 +655,80 @@ def get_leaderboard(limit: int = 20, db: Session = Depends(get_db)):
         quiz = db.query(Quiz).filter(Quiz.id == attempt.quiz_id).first()
         result.append(_build_result(attempt, quiz, db))
     return result
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# FLASHCARDS
+# ──────────────────────────────────────────────────────────────────────────────
+
+@app.post("/api/flashcards", response_model=FlashcardResponse, status_code=201)
+def create_flashcard(
+    data: FlashcardCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    exists = db.query(Flashcard).filter(
+        Flashcard.user_id == current_user.id,
+        Flashcard.question_id == data.question_id
+    ).first()
+    if exists:
+        return exists
+    
+    flashcard = Flashcard(user_id=current_user.id, question_id=data.question_id)
+    db.add(flashcard)
+    db.commit()
+    db.refresh(flashcard)
+    return flashcard
+
+
+@app.get("/api/flashcards", response_model=List[FlashcardResponse])
+def get_flashcards(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    return db.query(Flashcard).filter(Flashcard.user_id == current_user.id).order_by(Flashcard.created_at.desc()).all()
+
+
+@app.delete("/api/flashcards/{flashcard_id}", status_code=204)
+def delete_flashcard(
+    flashcard_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    flashcard = db.query(Flashcard).filter(
+        Flashcard.id == flashcard_id, Flashcard.user_id == current_user.id
+    ).first()
+    if not flashcard:
+        raise HTTPException(status_code=404, detail="Flashcard not found")
+    db.delete(flashcard)
+    db.commit()
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# COMMENTS
+# ──────────────────────────────────────────────────────────────────────────────
+
+@app.get("/api/questions/{question_id}/comments", response_model=List[QuestionCommentResponse])
+def get_question_comments(question_id: int, db: Session = Depends(get_db)):
+    return db.query(QuestionComment).filter(QuestionComment.question_id == question_id).order_by(QuestionComment.created_at.desc()).all()
+
+
+@app.post("/api/questions/{question_id}/comments", response_model=QuestionCommentResponse, status_code=201)
+def create_question_comment(
+    question_id: int,
+    data: QuestionCommentCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    comment = QuestionComment(
+        user_id=current_user.id,
+        question_id=question_id,
+        comment_text=data.comment_text
+    )
+    db.add(comment)
+    db.commit()
+    db.refresh(comment)
+    return comment
 
 
 # ──────────────────────────────────────────────────────────────────────────────

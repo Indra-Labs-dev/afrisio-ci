@@ -152,6 +152,33 @@ export interface CourseDetailResponse extends CourseResponse {
   lessons: LessonResponse[];
 }
 
+// ─── Flashcards ───────────────────────────────────────────────────────────────
+export interface FlashcardCreate {
+  question_id: number;
+}
+
+export interface FlashcardResponse {
+  id: number;
+  user_id: number;
+  question_id: number;
+  created_at: string;
+  question: QuestionResponse;
+}
+
+// ─── Comments ─────────────────────────────────────────────────────────────────
+export interface QuestionCommentCreate {
+  comment_text: string;
+}
+
+export interface QuestionCommentResponse {
+  id: number;
+  user_id: number;
+  question_id: number;
+  comment_text: string;
+  created_at: string;
+  user: UserResponse;
+}
+
 // ─── UI helpers ───────────────────────────────────────────────────────────────
 export const DIFFICULTY_LABEL: Record<string, string> = {
   easy: "Facile",

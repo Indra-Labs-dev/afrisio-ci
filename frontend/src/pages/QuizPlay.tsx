@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { scoreRandomQuiz } from "@/api/client";
 import { useStartQuiz, useSubmitQuiz } from "@/hooks/useApi";
 import { DIFFICULTY_LABEL } from "@/api/types";
@@ -7,10 +7,12 @@ import type { QuizDetailResponse, QuizStartResponse } from "@/api/types";
 import { Loader2 } from "lucide-react";
 import { DashboardLoader, Spinner } from "@/components/ui/loaders";
 import { useSounds } from "@/hooks/useSounds";
+import { toast } from "sonner";
 
 const QuizPlay = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const startMutation = useStartQuiz();
   const submitMutation = useSubmitQuiz();
@@ -144,6 +146,18 @@ const QuizPlay = () => {
       </div>
     );
   }
+
+  // ── Challenge Toast ───────────────────────────────────────────────────────
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    if (query.get("challenge") === "1" && preview && !started) {
+      toast.info("Un ami vous a défié ! Quel sera votre score ? ⚔️", {
+        position: "top-center",
+        duration: 5000,
+        id: "challenge-toast" // Prevents duplicate toasts
+      });
+    }
+  }, [location.search, preview, started]);
 
   // ── Pre-start screen ──────────────────────────────────────────────────────
   if (!started && preview) {

@@ -23,6 +23,7 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import Flashcards from "./pages/Flashcards";
 import AdminPanel from "./pages/AdminPanel";
 
 const queryClient = new QueryClient();
@@ -48,6 +49,7 @@ const App = () => (
             <Route path="/cours" element={<Courses />} />
             <Route path="/cours/:id" element={<CourseDetail />} />
             <Route path="/classement" element={<Leaderboard />} />
+            <Route path="/flashcards" element={<Flashcards />} />
             <Route path="/a-propos" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/profil" element={<Profile />} />

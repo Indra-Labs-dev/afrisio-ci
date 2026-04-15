@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Target, Trophy, Clock, Star } from "lucide-react";
 import { DashboardLoader, ComponentLoader } from "@/components/ui/loaders";
 import { CATEGORY_ICON, DIFFICULTY_LABEL } from "@/api/types";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Cell } from "recharts";
 
 const Dashboard = () => {
   const { isAuthenticated, user, isLoading: authLoading } = useAuth();
@@ -103,22 +104,49 @@ const Dashboard = () => {
                 <CardHeader>
                   <CardTitle className="text-lg">📊 Progression par matière</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-5">
+                <CardContent>
                   {stats && stats.category_stats.length > 0 ? (
-                    stats.category_stats.map((cs) => (
-                      <div key={cs.category_name}>
-                        <div className="mb-1.5 flex items-center justify-between text-sm">
-                          <span>
-                            {CATEGORY_ICON[cs.category_name] ?? "📚"} {cs.category_name}
-                          </span>
-                          <span className="font-medium text-primary">{cs.avg_percentage}%</span>
-                        </div>
-                        <Progress value={cs.avg_percentage} className="h-2" />
-                        <p className="mt-1 text-xs text-muted-foreground">
-                          {cs.quizzes_done} quiz complété{cs.quizzes_done !== 1 ? "s" : ""}
-                        </p>
-                      </div>
-                    ))
+                    <div className="h-[300px] w-full mt-4">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <BarChart
+                          data={stats.category_stats}
+                          margin={{ top: 5, right: 20, left: -20, bottom: 25 }}
+                        >
+                          <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.3} />
+                          <XAxis 
+                            dataKey="category_name" 
+                            axisLine={false} 
+                            tickLine={false} 
+                            tick={{ fontSize: 11, fill: 'currentColor', opacity: 0.7 }}
+                            dy={10}
+                            angle={-25}
+                            textAnchor="end"
+                          />
+                          <YAxis 
+                            axisLine={false} 
+                            tickLine={false} 
+                            domain={[0, 100]} 
+                            tick={{ fontSize: 11, fill: 'currentColor', opacity: 0.7 }} 
+                          />
+                          <RechartsTooltip 
+                            cursor={{ fill: 'rgba(0,0,0,0.05)' }}
+                            contentStyle={{ borderRadius: '10px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', color: '#000' }}
+                            formatter={(value: number) => [`${value}%`, 'Score Moyen']}
+                          />
+                          <Bar 
+                            dataKey="avg_percentage" 
+                            radius={[6, 6, 0, 0]}
+                            maxBarSize={40}
+                          >
+                            {
+                              stats.category_stats.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={entry.avg_percentage >= 70 ? 'hsl(var(--primary))' : entry.avg_percentage >= 50 ? '#f59e0b' : '#ef4444'} />
+                              ))
+                            }
+                          </Bar>
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </div>
                   ) : (
                     <div className="py-8 text-center text-sm text-muted-foreground">
                       Complétez des quiz pour voir votre progression !

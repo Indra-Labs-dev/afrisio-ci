@@ -310,3 +310,38 @@ class QuizStartResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+# ─── Flashcards ─────────────────────────────────────────────────────────────
+
+class FlashcardCreate(BaseModel):
+    question_id: int
+
+
+class FlashcardResponse(BaseModel):
+    id: int
+    user_id: int
+    question_id: int
+    created_at: datetime
+    question: QuestionResponse
+
+    class Config:
+        from_attributes = True
+
+
+# ─── Questions Comments ─────────────────────────────────────────────────────
+
+class QuestionCommentCreate(BaseModel):
+    comment_text: str
+
+
+class QuestionCommentResponse(BaseModel):
+    id: int
+    user_id: int
+    question_id: int
+    comment_text: str
+    created_at: datetime
+    user: UserResponse
+
+    class Config:
+        from_attributes = True
