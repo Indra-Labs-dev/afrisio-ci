@@ -2,6 +2,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useQuizzes, useCategories } from "@/hooks/useApi";
 import { DIFFICULTY_LABEL, CATEGORY_ICON } from "@/api/types";
 import { ComponentLoader } from "@/components/ui/loaders";
+import { Dices } from "lucide-react";
 
 const difficultyColor = (d: string) => {
   if (d === "easy") return "bg-accent text-accent-foreground";
@@ -23,9 +24,26 @@ const QuizCatalog = () => {
   return (
     <div className="container py-12">
       <h1 className="mb-2 font-heading text-3xl font-bold">Catalogue des Quiz</h1>
-      <p className="mb-8 text-muted-foreground">
+      <p className="mb-6 text-muted-foreground">
         Sélectionnez un quiz pour commencer votre préparation
       </p>
+
+      {/* Examen Blanc CTA */}
+      <div className="mb-8 flex items-center justify-between gap-4 rounded-2xl border bg-gradient-to-r from-primary/10 to-secondary/10 p-5">
+        <div>
+          <h2 className="font-heading text-lg font-bold">🎲 Examen Blanc</h2>
+          <p className="text-sm text-muted-foreground">
+            20 questions aléatoires issues de toutes les matières
+          </p>
+        </div>
+        <Link
+          to="/quiz/generate-random"
+          className="flex shrink-0 items-center gap-2 rounded-xl bg-primary px-5 py-2.5 font-medium text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:-translate-y-0.5 duration-200"
+        >
+          <Dices className="h-4 w-4" />
+          Lancer
+        </Link>
+      </div>
 
       {/* Category filters */}
       <div className="mb-8 flex flex-wrap gap-2">

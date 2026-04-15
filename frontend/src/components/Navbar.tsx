@@ -2,12 +2,19 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/images/icon.png";
 import { useAuth } from "@/contexts/AuthContext";
-import { LogOut, User } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
+import { useSounds } from "@/hooks/useSounds";
+import { LogOut, User, Sun, Moon, Volume2, VolumeX } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [soundOn, setSoundOn] = useState(() => {
+    return localStorage.getItem("afrisio-sounds") !== "false";
+  });
   const { isAuthenticated, user, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
+  const { toggleSounds, click } = useSounds();
 
   const links = [
     { to: "/", label: "Accueil" },
@@ -20,6 +27,12 @@ const Navbar = () => {
   ];
 
   const visibleLinks = links.filter((link) => !link.requireAuth || isAuthenticated);
+
+  const handleSoundToggle = () => {
+    const next = toggleSounds();
+    setSoundOn(next);
+    click();
+  };
 
   return (
     <nav className="sticky top-0 z-50 border-b bg-card/80 backdrop-blur-md">
@@ -44,8 +57,31 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          
-          <div className="ml-4 flex items-center border-l pl-4">
+
+          {/* Controls: Sound + Theme + Auth */}
+          <div className="ml-4 flex items-center gap-2 border-l pl-4">
+            {/* Sound toggle */}
+            <button
+              onClick={handleSoundToggle}
+              title={soundOn ? "Désactiver les sons" : "Activer les sons"}
+              className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition hover:bg-accent hover:text-accent-foreground"
+            >
+              {soundOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+            </button>
+
+            {/* Dark mode toggle */}
+            <button
+              onClick={toggleTheme}
+              title={theme === "dark" ? "Mode clair" : "Mode sombre"}
+              className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition hover:bg-accent hover:text-accent-foreground"
+            >
+              {theme === "dark" ? (
+                <Sun className="h-4 w-4 animate-scale-in" />
+              ) : (
+                <Moon className="h-4 w-4 animate-scale-in" />
+              )}
+            </button>
+
             {isAuthenticated ? (
               <div className="flex items-center gap-2">
                 <Link
@@ -82,18 +118,27 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="rounded-lg p-2 hover:bg-accent md:hidden"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <span className="text-xl">{menuOpen ? "✕" : "☰"}</span>
-        </button>
+        {/* Mobile controls + toggle */}
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            onClick={toggleTheme}
+            title={theme === "dark" ? "Mode clair" : "Mode sombre"}
+            className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition hover:bg-accent"
+          >
+            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
+          <button
+            className="rounded-lg p-2 hover:bg-accent"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <span className="text-xl">{menuOpen ? "✕" : "☰"}</span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="border-t bg-card p-4 md:hidden">
+        <div className="border-t bg-card p-4 md:hidden animate-fade-in">
           <div className="flex flex-col gap-1">
             {visibleLinks.map((link) => (
               <Link
@@ -109,9 +154,18 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
-            
+
             <div className="my-2 border-t" />
-            
+
+            {/* Sound toggle (mobile) */}
+            <button
+              onClick={handleSoundToggle}
+              className="rounded-lg px-4 py-2.5 text-sm font-medium transition-colors text-muted-foreground hover:bg-accent flex items-center gap-2 text-left"
+            >
+              {soundOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+              {soundOn ? "Désactiver les sons" : "Activer les sons"}
+            </button>
+
             {isAuthenticated ? (
               <>
                 <Link

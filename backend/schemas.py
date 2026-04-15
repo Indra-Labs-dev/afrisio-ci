@@ -31,10 +31,71 @@ class UserResponse(BaseModel):
     username: str
     full_name: Optional[str] = None
     is_active: bool
+    is_superuser: bool = False
     created_at: datetime
+    avatar_url: Optional[str] = None
+    xp: int = 0
+    level: int = 1
 
     class Config:
         from_attributes = True
+
+
+# ─── Badges ───────────────────────────────────────────────────────────────────
+
+class BadgeResponse(BaseModel):
+    id: int
+    name: str
+    description: str
+    icon: str
+    condition_type: str
+    condition_value: int
+
+    class Config:
+        from_attributes = True
+
+
+class UserBadgeResponse(BaseModel):
+    badge: BadgeResponse
+    awarded_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+# ─── Password Reset ───────────────────────────────────────────────────────────
+
+class ForgotPasswordRequest(BaseModel):
+    email: str
+
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str
+
+
+# ─── Avatar ───────────────────────────────────────────────────────────────────
+
+class AvatarUpdateRequest(BaseModel):
+    avatar_url: str  # base64 data URL or external URL
+
+
+# ─── Admin ────────────────────────────────────────────────────────────────────
+
+class AdminQuizCreate(BaseModel):
+    title: str
+    description: Optional[str] = None
+    duration_minutes: int = 30
+    difficulty: str = "medium"
+    category_id: int
+    questions: List["QuestionCreate"]
+
+
+class AdminCourseCreate(BaseModel):
+    title: str
+    description: Optional[str] = None
+    category_id: int
+    lessons: List["LessonBase"]
 
 
 # ─── Dashboard / Stats ────────────────────────────────────────────────────────

@@ -1,17 +1,51 @@
 import { useAuth } from "@/contexts/AuthContext";
-import { useQuery } from "@tanstack/react-query";
-import { fetchAttempts, fetchDashboard } from "@/api/client";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { fetchAttempts, fetchDashboard, getToken } from "@/api/client";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { LogOut } from "lucide-react";
-import { DashboardLoader, ComponentLoader } from "@/components/ui/loaders";
+import { LogOut, Camera, Shield } from "lucide-react";
 import { CATEGORY_ICON, DIFFICULTY_LABEL } from "@/api/types";
+import { DashboardLoader, ComponentLoader, Spinner } from "@/components/ui/loaders";
+import { useState, useRef } from "react";
+
+interface UserBadge {
+  badge: { id: number; name: string; description: string; icon: string };
+  awarded_at: string;
+}
+
+const XPBar = ({ xp, level }: { xp: number; level: number }) => {
+  const thresholds = [0, 100, 250, 500, 1000];
+  const currentMin = thresholds[Math.min(level - 1, thresholds.length - 1)] ?? 0;
+  const nextMin = thresholds[Math.min(level, thresholds.length - 1)] ?? currentMin + 500;
+  const progress = nextMin > currentMin ? Math.min(((xp - currentMin) / (nextMin - currentMin)) * 100, 100) : 100;
+
+  return (
+    <div className="mt-3">
+      <div className="mb-1 flex items-center justify-between text-xs text-muted-foreground">
+        <span>Niveau {level}</span>
+        <span>{xp} XP</span>
+      </div>
+      <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
+        <div
+          className="h-full rounded-full bg-gradient-to-r from-primary to-secondary transition-all duration-700"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+      <p className="mt-1 text-right text-xs text-muted-foreground">
+        {nextMin > xp ? `${nextMin - xp} XP jusqu'au niveau ${level + 1}` : "Niveau max !"}
+      </p>
+    </div>
+  );
+};
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading: authLoading, logout } = useAuth();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [avatarLoading, setAvatarLoading] = useState(false);
 
   const { data: stats } = useQuery({
     queryKey: ["dashboard"],
@@ -22,6 +56,19 @@ const Profile = () => {
   const { data: attempts = [], isLoading: attemptsLoading } = useQuery({
     queryKey: ["my-attempts"],
     queryFn: () => fetchAttempts(20),
+    enabled: isAuthenticated,
+  });
+
+  const { data: badges = [] } = useQuery<UserBadge[]>({
+    queryKey: ["my-badges"],
+    queryFn: async () => {
+      const token = getToken();
+      const res = await fetch("/api/profile/badges", {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
+      if (!res.ok) return [];
+      return res.json();
+    },
     enabled: isAuthenticated,
   });
 
@@ -40,6 +87,39 @@ const Profile = () => {
     navigate("/");
   };
 
+  const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 500_000) {
+      alert("Image trop grande (max 500 Ko)");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = async (ev) => {
+      const dataUrl = ev.target?.result as string;
+      setAvatarLoading(true);
+      try {
+        const token = getToken();
+        const res = await fetch("/api/profile/avatar", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+          body: JSON.stringify({ avatar_url: dataUrl }),
+        });
+        if (res.ok) {
+          queryClient.invalidateQueries({ queryKey: ["me"] });
+          // Force page refresh to reflect avatar
+          window.location.reload();
+        }
+      } finally {
+        setAvatarLoading(false);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <div className="container py-12">
       <div className="mx-auto max-w-4xl">
@@ -49,9 +129,38 @@ const Profile = () => {
           {/* User info card */}
           <Card className="md:col-span-1">
             <CardContent className="p-6 text-center">
-              <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary text-3xl text-primary-foreground">
-                {(user?.full_name ?? user?.username ?? "?").charAt(0).toUpperCase()}
+              {/* Avatar */}
+              <div className="relative mx-auto mb-4 h-24 w-24">
+                <div className="h-24 w-24 overflow-hidden rounded-full border-4 border-primary/20">
+                  {user?.avatar_url ? (
+                    <img
+                      src={user.avatar_url}
+                      alt="Avatar"
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-primary text-4xl font-bold text-primary-foreground">
+                      {(user?.full_name ?? user?.username ?? "?").charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                </div>
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={avatarLoading}
+                  className="absolute -bottom-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-white shadow-md transition hover:opacity-90 disabled:opacity-50"
+                  title="Changer l'avatar"
+                >
+                  {avatarLoading ? <Spinner size="sm" variant="white" /> : <Camera className="h-4 w-4" />}
+                </button>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleAvatarChange}
+                />
               </div>
+
               <h2 className="font-heading text-lg font-semibold">
                 {user?.full_name ?? user?.username}
               </h2>
@@ -67,6 +176,9 @@ const Profile = () => {
                   : "…"}
               </p>
 
+              {/* XP Bar */}
+              <XPBar xp={user?.xp ?? 0} level={user?.level ?? 1} />
+
               <div className="mt-6 grid grid-cols-2 gap-3">
                 {[
                   { label: "Quiz", value: stats?.total_quizzes ?? "…" },
@@ -81,9 +193,19 @@ const Profile = () => {
                 ))}
               </div>
 
+              {user?.is_superuser && (
+                <Link
+                  to="/admin"
+                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-primary/30 px-4 py-2 text-sm font-medium text-primary transition hover:bg-primary/10"
+                >
+                  <Shield className="h-4 w-4" />
+                  Administration
+                </Link>
+              )}
+
               <button
                 onClick={handleLogout}
-                className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium text-destructive transition hover:bg-destructive/10"
+                className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium text-destructive transition hover:bg-destructive/10"
               >
                 <LogOut className="h-4 w-4" />
                 Se déconnecter
@@ -91,8 +213,31 @@ const Profile = () => {
             </CardContent>
           </Card>
 
-          {/* Progress & history */}
+          {/* Right column */}
           <div className="space-y-6 md:col-span-2">
+            {/* Badges */}
+            {badges.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">🏅 Mes Badges</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-3">
+                    {badges.map((ub) => (
+                      <div
+                        key={ub.badge.id}
+                        title={ub.badge.description}
+                        className="group flex flex-col items-center gap-1 rounded-xl border bg-muted/40 p-3 text-center transition hover:bg-accent hover:border-primary/30"
+                      >
+                        <span className="text-2xl">{ub.badge.icon}</span>
+                        <span className="text-xs font-medium">{ub.badge.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
             {/* Subject progress */}
             <Card>
               <CardHeader>
@@ -166,10 +311,10 @@ const Profile = () => {
                             variant="outline"
                             className={
                               pct >= 80
-                                ? "bg-emerald-100 text-emerald-700"
+                                ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
                                 : pct >= 50
-                                ? "bg-amber-100 text-amber-700"
-                                : "bg-red-100 text-red-700"
+                                ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
+                                : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
                             }
                           >
                             {pct}%

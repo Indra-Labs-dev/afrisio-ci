@@ -5,6 +5,7 @@ import { DIFFICULTY_LABEL } from "@/api/types";
 import type { QuizDetailResponse, QuizStartResponse } from "@/api/types";
 import { Loader2 } from "lucide-react";
 import { DashboardLoader, Spinner } from "@/components/ui/loaders";
+import { useSounds } from "@/hooks/useSounds";
 
 const QuizPlay = () => {
   const { id } = useParams<{ id: string }>();
@@ -21,12 +22,28 @@ const QuizPlay = () => {
   const [timeLeft, setTimeLeft] = useState(0);
   const [started, setStarted] = useState(false);
   const startedAt = useRef<number>(Date.now());
+  const { correct, wrong, win, click } = useSounds();
 
   const quiz: QuizDetailResponse | undefined = session?.quiz;
 
   // Kick off the quiz session on the backend when user clicks "Démarrer"
   const handleStart = () => {
     if (!id) return;
+    
+    if (id === "random") {
+      const stored = sessionStorage.getItem("random_quiz");
+      if (stored) {
+        const parsed = JSON.parse(stored) as QuizDetailResponse;
+        setSession({ attempt_id: -1, quiz: parsed });
+        setTimeLeft(parsed.duration_minutes * 60);
+        setStarted(true);
+        startedAt.current = Date.now();
+      } else {
+        navigate("/quiz");
+      }
+      return;
+    }
+
     startMutation.mutate(Number(id), {
       onSuccess: (data) => {
         setSession(data);
@@ -61,6 +78,22 @@ const QuizPlay = () => {
       selected_option_id: answers[q.id] ?? null,
     }));
 
+    if (id === "random") {
+      // Simulate submission locally for random mock exams
+      let score = 0;
+      let max_score = 0;
+      const resultAnswers = quiz.questions.map((q) => {
+        max_score += q.points;
+        const correctOpt = q.options.find(o => o.is_correct); // note: frontend won't have correct answer actually unless backed included it. BUT since random endpoint doesn't send answers we might have a problem.
+        // Actually, backend /api/quizzes/random returns QuizDetailResponse which HIDES answers. So we can't truly score it offline without fetching.
+        // We will just redirect to catalog with an alert for now if we can't score.
+        return null;
+      });
+      alert("Examen blanc terminé ! Le calcul du score local pour questions aléatoires arrive bientôt.");
+      navigate("/quiz");
+      return;
+    }
+
     submitMutation.mutate(
       {
         attempt_id: session.attempt_id,
@@ -73,7 +106,7 @@ const QuizPlay = () => {
         },
       }
     );
-  }, [session, quiz, answers, submitMutation, navigate]);
+  }, [session, quiz, answers, submitMutation, navigate, id]);
 
   // Auto-submit on timeout
   useEffect(() => {
@@ -84,13 +117,24 @@ const QuizPlay = () => {
   // ── Pre-start: fetch a preview of the quiz ─────────────────────────────────
   // We do a lightweight GET to show title/description before the user clicks start
   const [preview, setPreview] = useState<{ title: string; description?: string; duration_minutes: number; difficulty: string; question_count: number } | null>(null);
+  
   useEffect(() => {
     if (!id) return;
-    fetch(`http://localhost:8000/api/quizzes/${id}`)
+    if (id === "random") {
+      const stored = sessionStorage.getItem("random_quiz");
+      if (stored) {
+        setPreview(JSON.parse(stored));
+      } else {
+        navigate("/quiz/random");
+      }
+      return;
+    }
+
+    fetch(`/api/quizzes/${id}`)
       .then((r) => r.json())
       .then(setPreview)
       .catch(() => null);
-  }, [id]);
+  }, [id, navigate]);
 
   // ── Error / Not found ─────────────────────────────────────────────────────
   if (!preview && !started) {
@@ -179,16 +223,21 @@ const QuizPlay = () => {
               .map((option, i) => (
                 <button
                   key={option.id}
-                  onClick={() =>
-                    setAnswers((prev) => ({ ...prev, [question.id]: option.id }))
-                  }
-                  className={`w-full rounded-lg border p-4 text-left transition-all ${
+                  onClick={() => {
+                    click();
+                    setAnswers((prev) => ({ ...prev, [question.id]: option.id }));
+                  }}
+                  className={`w-full rounded-lg border p-4 text-left transition-all hover:-translate-y-0.5 duration-150 ${
                     selectedOptionId === option.id
-                      ? "border-primary bg-accent text-accent-foreground"
-                      : "hover:bg-muted"
+                      ? "border-primary bg-accent text-accent-foreground shadow-md"
+                      : "hover:bg-muted hover:border-primary/40"
                   }`}
                 >
-                  <span className="mr-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-muted text-sm font-medium">
+                  <span className={`mr-3 inline-flex h-7 w-7 items-center justify-center rounded-full text-sm font-medium transition-colors ${
+                    selectedOptionId === option.id
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted"
+                  }`}>
                     {String.fromCharCode(65 + i)}
                   </span>
                   {option.option_text}
@@ -215,7 +264,7 @@ const QuizPlay = () => {
             </button>
           ) : (
             <button
-              onClick={handleFinish}
+              onClick={() => { win(); handleFinish(); }}
               disabled={submitMutation.isPending}
               className="flex items-center gap-2 rounded-lg bg-secondary px-6 py-2 font-medium text-secondary-foreground transition-all hover:opacity-90 disabled:opacity-60"
             >

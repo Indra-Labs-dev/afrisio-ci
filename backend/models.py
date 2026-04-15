@@ -96,9 +96,41 @@ class User(Base):
     hashed_password = Column(String)
     full_name = Column(String, nullable=True)
     is_active = Column(Boolean, default=True)
+    is_superuser = Column(Boolean, default=False)
     created_at = Column(DateTime, default=datetime.utcnow)
+    avatar_url = Column(String, nullable=True)
+    xp = Column(Integer, default=0)
+    level = Column(Integer, default=1)
+    reset_token = Column(String, nullable=True)
+    reset_token_expires = Column(DateTime, nullable=True)
 
     attempts = relationship("QuizAttempt", back_populates="user")
+    user_badges = relationship("UserBadge", back_populates="user")
+
+
+class Badge(Base):
+    __tablename__ = "badges"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True, index=True)
+    description = Column(String)
+    icon = Column(String, default="🏅")
+    condition_type = Column(String)  # quizzes_done, avg_score, total_xp
+    condition_value = Column(Integer)  # threshold value
+
+    user_badges = relationship("UserBadge", back_populates="badge")
+
+
+class UserBadge(Base):
+    __tablename__ = "user_badges"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    badge_id = Column(Integer, ForeignKey("badges.id"))
+    awarded_at = Column(DateTime, default=datetime.utcnow)
+
+    user = relationship("User", back_populates="user_badges")
+    badge = relationship("Badge", back_populates="user_badges")
 
 
 class QuizAttempt(Base):

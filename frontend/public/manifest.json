@@ -1,0 +1,22 @@
+{
+  "name": "AfriSio CI",
+  "short_name": "AfriSio",
+  "description": "Plateforme éducative pour la formation en Côte d'Ivoire",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
+    {
+      "src": "/icon-maskable.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    }
+  ]
+}
