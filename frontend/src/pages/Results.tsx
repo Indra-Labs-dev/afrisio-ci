@@ -110,20 +110,32 @@ const Results = () => {
                   >
                     {isCorrect ? "✓" : "✗"}
                   </span>
-                  <h3 className="font-medium">Question {i + 1}</h3>
+                  <div>
+                    <h3 className="font-medium text-lg">Question {i + 1}</h3>
+                    {ans.question_text && <p className="text-foreground mt-1 font-medium">{ans.question_text}</p>}
+                  </div>
                 </div>
-                <div className="ml-9 space-y-1 text-sm">
-                  {!isCorrect && ans.selected_option_id && (
-                    <p className="text-destructive">
-                      Votre réponse : Option #{ans.selected_option_id}
-                    </p>
+                <div className="ml-9 space-y-2 text-sm">
+                  {!isCorrect && ans.selected_option_text && (
+                    <div className="rounded-md bg-destructive/10 p-3 text-destructive">
+                      <span className="font-semibold">Votre réponse :</span> {ans.selected_option_text}
+                    </div>
                   )}
                   {!isCorrect && !ans.selected_option_id && (
-                    <p className="text-muted-foreground italic">Aucune réponse sélectionnée</p>
+                    <div className="rounded-md bg-muted p-3 text-muted-foreground italic">
+                      Aucune réponse sélectionnée
+                    </div>
                   )}
-                  <p className="font-medium text-primary">
-                    Bonne réponse : Option #{ans.correct_option_id}
-                  </p>
+                  <div className="rounded-md bg-primary/10 p-3 text-primary">
+                      <span className="font-semibold">Bonne réponse :</span> {ans.correct_option_text || `Option #${ans.correct_option_id}`}
+                  </div>
+                  
+                  {ans.explanation && (
+                    <div className="mt-4 rounded-md bg-muted/50 p-4 border text-foreground/80">
+                      <h4 className="font-semibold mb-1 text-foreground">Explication :</h4>
+                      <p>{ans.explanation}</p>
+                    </div>
+                  )}
                 </div>
               </div>
             );

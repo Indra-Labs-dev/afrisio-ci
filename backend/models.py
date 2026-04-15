@@ -13,6 +13,33 @@ class Category(Base):
     icon = Column(String, nullable=True)
 
     quizzes = relationship("Quiz", back_populates="category")
+    courses = relationship("Course", back_populates="category")
+
+
+class Course(Base):
+    __tablename__ = "courses"
+
+    id = Column(Integer, primary_key=True, index=True)
+    category_id = Column(Integer, ForeignKey("categories.id"))
+    title = Column(String, index=True)
+    description = Column(String, nullable=True)
+    is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    category = relationship("Category", back_populates="courses")
+    lessons = relationship("Lesson", back_populates="course", cascade="all, delete-orphan")
+
+
+class Lesson(Base):
+    __tablename__ = "lessons"
+
+    id = Column(Integer, primary_key=True, index=True)
+    course_id = Column(Integer, ForeignKey("courses.id"))
+    title = Column(String, index=True)
+    content = Column(Text)
+    order = Column(Integer, default=0)
+
+    course = relationship("Course", back_populates="lessons")
 
 
 class Quiz(Base):
@@ -39,6 +66,8 @@ class Question(Base):
     quiz_id = Column(Integer, ForeignKey("quizzes.id"))
     question_text = Column(Text)
     question_type = Column(String, default="multiple_choice")  # multiple_choice, true_false
+    explanation = Column(Text, nullable=True)
+    difficulty = Column(String, default="medium")  # facile, moyen, difficile
     points = Column(Integer, default=1)
     order = Column(Integer, default=0)
 

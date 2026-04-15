@@ -6,11 +6,12 @@ from typing import List, Optional
 from datetime import datetime
 
 from database import engine, Base, get_db
-from models import Category, Quiz, Question, Option, QuizAttempt, UserAnswer, User
+from models import Category, Quiz, Question, Option, QuizAttempt, UserAnswer, User, Course, Lesson
 from schemas import (
     CategoryResponse, QuizResponse, QuizDetailResponse, QuizResultResponse,
     QuizStartResponse, QuizSubmit, UserAnswerCreate,
     UserRegister, UserLogin, TokenResponse, UserResponse, DashboardResponse, CategoryStat,
+    CourseResponse, CourseDetailResponse, LessonResponse
 )
 from auth import (
     hash_password, verify_password, create_access_token,
@@ -166,6 +167,35 @@ def get_category(category_id: int, db: Session = Depends(get_db)):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
+# COURSES
+# ──────────────────────────────────────────────────────────────────────────────
+
+@app.get("/api/courses", response_model=List[CourseResponse])
+def get_courses(category_id: Optional[int] = None, db: Session = Depends(get_db)):
+    query = db.query(Course).filter(Course.is_active == True)
+    if category_id:
+        query = query.filter(Course.category_id == category_id)
+    return query.all()
+
+@app.get("/api/courses/{course_id}", response_model=CourseDetailResponse)
+def get_course(course_id: int, db: Session = Depends(get_db)):
+    course = db.query(Course).filter(Course.id == course_id, Course.is_active == True).first()
+    if not course:
+        raise HTTPException(status_code=404, detail="Course not found")
+    
+    lessons = sorted(course.lessons, key=lambda l: l.order)
+    return {
+        "id": course.id,
+        "title": course.title,
+        "description": course.description,
+        "is_active": course.is_active,
+        "category_id": course.category_id,
+        "created_at": course.created_at,
+        "category": course.category,
+        "lessons": [{"id": l.id, "title": l.title, "content": l.content, "order": l.order} for l in lessons]
+    }
+
+# ──────────────────────────────────────────────────────────────────────────────
 # QUIZZES
 # ──────────────────────────────────────────────────────────────────────────────
 
@@ -284,6 +314,8 @@ def submit_quiz(submission: QuizSubmit, db: Session = Depends(get_db)):
         if is_correct:
             score += question.points
 
+        selected_option = db.query(Option).filter(Option.id == answer_data.selected_option_id).first() if answer_data.selected_option_id else None
+        
         db.add(UserAnswer(
             attempt_id=attempt.id,
             question_id=answer_data.question_id,
@@ -295,6 +327,10 @@ def submit_quiz(submission: QuizSubmit, db: Session = Depends(get_db)):
             "selected_option_id": answer_data.selected_option_id,
             "is_correct": is_correct,
             "correct_option_id": correct_option.id if correct_option else None,
+            "explanation": question.explanation if question else None,
+            "question_text": question.question_text if question else None,
+            "selected_option_text": selected_option.option_text if selected_option else None,
+            "correct_option_text": correct_option.option_text if correct_option else None,
         })
 
     attempt.score = score
@@ -329,14 +365,21 @@ def submit_quiz(submission: QuizSubmit, db: Session = Depends(get_db)):
 def _build_result(attempt, quiz, db):
     user_answers = []
     for answer in attempt.answers:
+        question = db.query(Question).filter(Question.id == answer.question_id).first()
         correct_option = db.query(Option).filter(
             Option.question_id == answer.question_id, Option.is_correct == True
         ).first()
+        selected_option = db.query(Option).filter(Option.id == answer.selected_option_id).first() if answer.selected_option_id else None
+        
         user_answers.append({
             "question_id": answer.question_id,
             "selected_option_id": answer.selected_option_id,
             "is_correct": answer.is_correct,
             "correct_option_id": correct_option.id if correct_option else None,
+            "explanation": question.explanation if question else None,
+            "question_text": question.question_text if question else None,
+            "selected_option_text": selected_option.option_text if selected_option else None,
+            "correct_option_text": correct_option.option_text if correct_option else None,
         })
     return {
         "attempt": {

@@ -1,22 +1,18 @@
 import { Link, useSearchParams } from "react-router-dom";
-import { courses } from "@/data/courseData";
-import { categories } from "@/data/quizData";
+import { useCourses, useCategories } from "@/hooks/useApi";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
-const levelColors: Record<string, string> = {
-  "Débutant": "bg-accent text-accent-foreground",
-  "Intermédiaire": "bg-secondary/15 text-secondary",
-  "Avancé": "bg-destructive/15 text-destructive",
-};
+import { Loader2 } from "lucide-react";
 
 const Courses = () => {
-  const [searchParams] = useSearchParams();
-  const selectedCategory = searchParams.get("category");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedCategoryStr = searchParams.get("category");
+  const selectedCategory = selectedCategoryStr ? Number(selectedCategoryStr) : undefined;
 
-  const filtered = selectedCategory
-    ? courses.filter((c) => c.category === selectedCategory)
-    : courses;
+  const { data: courses = [], isLoading: isLoadingCourses } = useCourses(
+    selectedCategory ? { category_id: selectedCategory } : undefined
+  );
+  const { data: categories = [] } = useCategories();
 
   return (
     <div className="container py-12">
@@ -29,8 +25,8 @@ const Courses = () => {
 
       {/* Category filter */}
       <div className="mb-8 flex flex-wrap justify-center gap-2">
-        <Link
-          to="/cours"
+        <button
+          onClick={() => setSearchParams({})}
           className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
             !selectedCategory
               ? "bg-primary text-primary-foreground"
@@ -38,11 +34,11 @@ const Courses = () => {
           }`}
         >
           Toutes
-        </Link>
+        </button>
         {categories.map((cat) => (
-          <Link
+          <button
             key={cat.id}
-            to={`/cours?category=${cat.id}`}
+            onClick={() => setSearchParams({ category: String(cat.id) })}
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
               selectedCategory === cat.id
                 ? "bg-primary text-primary-foreground"
@@ -50,22 +46,24 @@ const Courses = () => {
             }`}
           >
             {cat.icon} {cat.name}
-          </Link>
+          </button>
         ))}
       </div>
 
-      {/* Course grid */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((course) => {
-          const cat = categories.find((c) => c.id === course.category);
-          return (
+      {isLoadingCourses ? (
+        <div className="flex justify-center py-20">
+          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        </div>
+      ) : (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {courses.map((course) => (
             <Link key={course.id} to={`/cours/${course.id}`}>
               <Card className="h-full transition-all hover:card-hover-shadow">
                 <CardHeader>
                   <div className="mb-2 flex items-center gap-2">
-                    <span className="text-2xl">{cat?.icon}</span>
-                    <Badge variant="outline" className={levelColors[course.level]}>
-                      {course.level}
+                    <span className="text-2xl">{course.category?.icon || "📘"}</span>
+                    <Badge variant="outline" className="bg-accent text-accent-foreground">
+                      Bases
                     </Badge>
                   </div>
                   <CardTitle className="text-lg">{course.title}</CardTitle>
@@ -73,17 +71,17 @@ const Courses = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                    <span>📖 {course.lessonsCount} leçons</span>
-                    <span>⏱️ {course.duration}</span>
+                    <span>📖 Structure modulaire</span>
+                    <span>⏱️ À votre rythme</span>
                   </div>
                 </CardContent>
               </Card>
             </Link>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      )}
 
-      {filtered.length === 0 && (
+      {!isLoadingCourses && courses.length === 0 && (
         <div className="py-20 text-center text-muted-foreground">
           <p className="text-lg">Aucun cours disponible dans cette catégorie pour le moment.</p>
         </div>

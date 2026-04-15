@@ -107,6 +107,10 @@ export interface UserAnswerResponse {
   selected_option_id?: number | null;
   is_correct: boolean;
   correct_option_id: number;
+  explanation?: string | null;
+  question_text?: string | null;
+  selected_option_text?: string | null;
+  correct_option_text?: string | null;
 }
 
 export interface QuizAttemptResponse {
@@ -124,6 +128,28 @@ export interface QuizAttemptResponse {
 export interface QuizResultResponse {
   attempt: QuizAttemptResponse;
   answers: UserAnswerResponse[];
+}
+
+// ─── Course ───────────────────────────────────────────────────────────────────
+export interface LessonResponse {
+  id: number;
+  title: string;
+  content: string;
+  order: number;
+}
+
+export interface CourseResponse {
+  id: number;
+  title: string;
+  description?: string;
+  category_id: number;
+  created_at: string;
+  category: Category;
+  is_active: boolean;
+}
+
+export interface CourseDetailResponse extends CourseResponse {
+  lessons: LessonResponse[];
 }
 
 // ─── UI helpers ───────────────────────────────────────────────────────────────

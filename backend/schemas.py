@@ -84,14 +84,17 @@ class QuestionBase(BaseModel):
     question_type: str = "multiple_choice"
     points: int = 1
     order: int = 0
+    difficulty: str = "medium"
 
 
 class QuestionCreate(QuestionBase):
+    explanation: Optional[str] = None
     options: List[OptionCreate]
 
 
 class QuestionResponse(QuestionBase):
     id: int
+    explanation: Optional[str] = None
     options: List[OptionResponse]
 
     class Config:
@@ -123,6 +126,37 @@ class CategoryResponse(CategoryBase):
 
     class Config:
         from_attributes = True
+
+
+# ─── Course & Lesson ──────────────────────────────────────────────────────────
+
+class LessonBase(BaseModel):
+    title: str
+    content: str
+    order: int = 0
+
+class LessonResponse(LessonBase):
+    id: int
+
+    class Config:
+        from_attributes = True
+
+class CourseBase(BaseModel):
+    title: str
+    description: Optional[str] = None
+    is_active: bool = True
+
+class CourseResponse(CourseBase):
+    id: int
+    category_id: int
+    created_at: datetime
+    category: CategoryResponse
+
+    class Config:
+        from_attributes = True
+
+class CourseDetailResponse(CourseResponse):
+    lessons: List[LessonResponse]
 
 
 # ─── Quiz ─────────────────────────────────────────────────────────────────────
@@ -177,6 +211,10 @@ class UserAnswerResponse(BaseModel):
     selected_option_id: Optional[int]
     is_correct: bool
     correct_option_id: int
+    explanation: Optional[str] = None
+    question_text: Optional[str] = None
+    selected_option_text: Optional[str] = None
+    correct_option_text: Optional[str] = None
 
     class Config:
         from_attributes = True

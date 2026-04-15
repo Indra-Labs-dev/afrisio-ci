@@ -1,18 +1,27 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { courses } from "@/data/courseData";
-import { categories } from "@/data/quizData";
+import { useCourse } from "@/hooks/useApi";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Loader2 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 const CourseDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const course = courses.find((c) => c.id === id);
+  const { data: course, isLoading, isError } = useCourse(Number(id));
   const [activeLesson, setActiveLesson] = useState(0);
 
-  if (!course) {
+  if (isLoading) {
+    return (
+      <div className="container flex min-h-[60vh] items-center justify-center py-12">
+        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
+
+  if (isError || !course) {
     return (
       <div className="container py-20 text-center">
         <h1 className="font-heading text-2xl font-bold">Cours introuvable</h1>
@@ -23,7 +32,7 @@ const CourseDetail = () => {
     );
   }
 
-  const cat = categories.find((c) => c.id === course.category);
+  const cat = course.category;
   const lesson = course.lessons[activeLesson];
 
   return (
@@ -39,7 +48,7 @@ const CourseDetail = () => {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <span className="text-2xl">{cat?.icon}</span>
-                <Badge variant="outline">{course.level}</Badge>
+                <Badge variant="outline">Bases</Badge>
               </div>
               <CardTitle className="text-xl">{course.title}</CardTitle>
               <p className="text-sm text-muted-foreground">{course.description}</p>
@@ -66,68 +75,41 @@ const CourseDetail = () => {
 
         {/* Main content */}
         <div className="lg:col-span-2 space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>{lesson.title}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              {/* Content */}
-              <div className="prose max-w-none">
-                {lesson.content.split("\n\n").map((paragraph, i) => (
-                  <p key={i} className="mb-4 leading-relaxed text-foreground/90">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-
-              {/* Key points */}
-              <div className="rounded-xl border bg-accent/30 p-6">
-                <h3 className="mb-3 font-heading font-semibold text-accent-foreground">
-                  📌 Points clés à retenir
-                </h3>
-                <ul className="space-y-2">
-                  {lesson.keyPoints.map((point, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <span className="mt-0.5 text-primary">✓</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Video */}
-              {lesson.videoUrl && (
-                <div>
-                  <h3 className="mb-3 font-heading font-semibold">🎬 Vidéo explicative</h3>
-                  <div className="aspect-video overflow-hidden rounded-xl border">
-                    <iframe
-                      src={lesson.videoUrl}
-                      title={lesson.title}
-                      className="h-full w-full"
-                      allowFullScreen
-                    />
-                  </div>
+          {lesson ? (
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-3xl font-heading text-primary">{lesson.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                
+                {/* Markdown Content rendered nicely */}
+                <div className="prose prose-blue max-w-none text-foreground/90">
+                  <ReactMarkdown>{lesson.content}</ReactMarkdown>
                 </div>
-              )}
 
-              {/* Navigation */}
-              <div className="flex justify-between pt-4">
-                <Button
-                  variant="outline"
-                  disabled={activeLesson === 0}
-                  onClick={() => setActiveLesson((p) => p - 1)}
-                >
-                  ← Précédent
-                </Button>
-                <Button
-                  disabled={activeLesson === course.lessons.length - 1}
-                  onClick={() => setActiveLesson((p) => p + 1)}
-                >
-                  Suivant →
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+                {/* Navigation */}
+                <div className="flex justify-between pt-4 mt-8 border-t">
+                  <Button
+                    variant="outline"
+                    disabled={activeLesson === 0}
+                    onClick={() => setActiveLesson((p) => p - 1)}
+                  >
+                    ← Précédent
+                  </Button>
+                  <Button
+                    disabled={activeLesson === course.lessons.length - 1}
+                    onClick={() => setActiveLesson((p) => p + 1)}
+                  >
+                    Suivant →
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ) : (
+            <div className="py-20 text-center text-muted-foreground">
+              Aucune leçon trouvée pour ce cours.
+            </div>
+          )}
 
           {/* FAQ / Additional info */}
           <Card>

@@ -10,6 +10,8 @@ import type {
   TokenResponse,
   UserResponse,
   DashboardResponse,
+  CourseResponse,
+  CourseDetailResponse,
 } from "./types";
 
 // ─── Auth token storage ───────────────────────────────────────────────────────
@@ -82,3 +84,14 @@ export const fetchAttempts = (limit = 20): Promise<QuizResultResponse[]> =>
 // ─── Leaderboard ──────────────────────────────────────────────────────────────
 export const fetchLeaderboard = (limit = 20): Promise<QuizResultResponse[]> =>
   request(`/api/leaderboard?limit=${limit}`);
+
+// ─── Courses ──────────────────────────────────────────────────────────────────
+export const fetchCourses = (params?: { category_id?: number }): Promise<CourseResponse[]> => {
+  const qs = new URLSearchParams();
+  if (params?.category_id) qs.set("category_id", String(params.category_id));
+  const query = qs.toString() ? `?${qs}` : "";
+  return request(`/api/courses${query}`);
+};
+
+export const fetchCourse = (id: number): Promise<CourseDetailResponse> =>
+  request(`/api/courses/${id}`);
