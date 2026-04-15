@@ -1,6 +1,6 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useAttempt } from "@/hooks/useApi";
-import { Loader2 } from "lucide-react";
+import { DashboardLoader } from "@/components/ui/loaders";
 
 const Results = () => {
   const { id } = useParams<{ id: string }>();
@@ -10,7 +10,7 @@ const Results = () => {
   if (isLoading) {
     return (
       <div className="container flex min-h-[60vh] items-center justify-center py-12">
-        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        <DashboardLoader />
       </div>
     );
   }

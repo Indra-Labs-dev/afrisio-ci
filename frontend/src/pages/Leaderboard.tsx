@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchLeaderboard } from "@/api/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2 } from "lucide-react";
+import { ComponentLoader } from "@/components/ui/loaders";
 import { CATEGORY_ICON, DIFFICULTY_LABEL } from "@/api/types";
 
 const medalEmoji = ["🥇", "🥈", "🥉"];
@@ -34,8 +34,8 @@ const Leaderboard = () => {
         </p>
 
         {isLoading && (
-          <div className="flex justify-center py-20">
-            <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+          <div className="py-20">
+            <ComponentLoader />
           </div>
         )}
 

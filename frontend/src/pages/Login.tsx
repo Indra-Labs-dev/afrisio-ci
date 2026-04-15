@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { Loader2, Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
+import { Spinner } from "@/components/ui/loaders";
 
 const Login = () => {
   const { login } = useAuth();
@@ -88,9 +89,9 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3 font-medium text-primary-foreground transition-all hover:opacity-90 disabled:opacity-60"
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3 font-medium text-primary-foreground transition-all hover:opacity-90 disabled:opacity-60 hover:shadow-lg hover:-translate-y-0.5 duration-200"
             >
-              {loading && <Loader2 className="h-4 w-4 animate-spin" />}
+              {loading && <Spinner size="sm" variant="white" />}
               Se connecter
             </button>
           </form>

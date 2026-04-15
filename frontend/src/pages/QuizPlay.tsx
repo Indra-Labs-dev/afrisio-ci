@@ -4,6 +4,7 @@ import { useStartQuiz, useSubmitQuiz } from "@/hooks/useApi";
 import { DIFFICULTY_LABEL } from "@/api/types";
 import type { QuizDetailResponse, QuizStartResponse } from "@/api/types";
 import { Loader2 } from "lucide-react";
+import { DashboardLoader, Spinner } from "@/components/ui/loaders";
 
 const QuizPlay = () => {
   const { id } = useParams<{ id: string }>();
@@ -95,7 +96,7 @@ const QuizPlay = () => {
   if (!preview && !started) {
     return (
       <div className="container flex min-h-[60vh] items-center justify-center py-12">
-        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        <DashboardLoader />
       </div>
     );
   }
@@ -122,9 +123,9 @@ const QuizPlay = () => {
           <button
             onClick={handleStart}
             disabled={startMutation.isPending}
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3 font-medium text-primary-foreground transition-all hover:opacity-90 disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3 font-medium text-primary-foreground transition-all hover:opacity-90 disabled:opacity-60 hover:shadow-lg hover:-translate-y-0.5 duration-200"
           >
-            {startMutation.isPending && <Loader2 className="h-4 w-4 animate-spin" />}
+            {startMutation.isPending && <Spinner size="sm" variant="white" />}
             Démarrer le quiz
           </button>
         </div>
@@ -218,7 +219,7 @@ const QuizPlay = () => {
               disabled={submitMutation.isPending}
               className="flex items-center gap-2 rounded-lg bg-secondary px-6 py-2 font-medium text-secondary-foreground transition-all hover:opacity-90 disabled:opacity-60"
             >
-              {submitMutation.isPending && <Loader2 className="h-4 w-4 animate-spin" />}
+              {submitMutation.isPending && <Spinner size="sm" variant="white" />}
               Terminer
             </button>
           )}

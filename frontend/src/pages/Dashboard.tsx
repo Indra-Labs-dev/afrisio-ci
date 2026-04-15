@@ -6,7 +6,8 @@ import { Link, Navigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Trophy, Target, Clock, Star } from "lucide-react";
+import { Target, Trophy, Clock, Star } from "lucide-react";
+import { DashboardLoader, ComponentLoader } from "@/components/ui/loaders";
 import { CATEGORY_ICON, DIFFICULTY_LABEL } from "@/api/types";
 
 const Dashboard = () => {
@@ -27,7 +28,7 @@ const Dashboard = () => {
   if (authLoading) {
     return (
       <div className="container flex min-h-[60vh] items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        <DashboardLoader />
       </div>
     );
   }
@@ -51,7 +52,7 @@ const Dashboard = () => {
 
         {isLoading ? (
           <div className="flex justify-center py-20">
-            <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+            <DashboardLoader />
           </div>
         ) : (
           <>

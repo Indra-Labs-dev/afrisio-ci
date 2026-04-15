@@ -5,7 +5,8 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Loader2, LogOut } from "lucide-react";
+import { LogOut } from "lucide-react";
+import { DashboardLoader, ComponentLoader } from "@/components/ui/loaders";
 import { CATEGORY_ICON, DIFFICULTY_LABEL } from "@/api/types";
 
 const Profile = () => {
@@ -27,7 +28,7 @@ const Profile = () => {
   if (authLoading) {
     return (
       <div className="container flex min-h-[60vh] items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        <DashboardLoader />
       </div>
     );
   }
@@ -125,8 +126,8 @@ const Profile = () => {
               </CardHeader>
               <CardContent>
                 {attemptsLoading ? (
-                  <div className="flex justify-center py-6">
-                    <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+                  <div className="py-6">
+                    <ComponentLoader />
                   </div>
                 ) : attempts.length === 0 ? (
                   <div className="py-6 text-center text-sm text-muted-foreground">

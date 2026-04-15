@@ -2,7 +2,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useCourses, useCategories } from "@/hooks/useApi";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2 } from "lucide-react";
+import { ComponentLoader } from "@/components/ui/loaders";
 
 const Courses = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -51,8 +51,8 @@ const Courses = () => {
       </div>
 
       {isLoadingCourses ? (
-        <div className="flex justify-center py-20">
-          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        <div className="py-20">
+          <ComponentLoader />
         </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

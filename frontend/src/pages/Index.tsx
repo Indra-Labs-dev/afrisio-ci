@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useCategories, useQuizzes, useAttempts } from "@/hooks/useApi";
 import { CATEGORY_ICON } from "@/api/types";
-import { Loader2 } from "lucide-react";
+import { Spinner } from "@/components/ui/loaders";
 
 const HeroSection = () => (
   <section className="relative overflow-hidden py-20 md:py-32">
@@ -80,7 +80,7 @@ const CategoriesSection = () => {
         </div>
         {isLoading ? (
           <div className="flex justify-center py-12">
-            <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+            <Spinner />
           </div>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

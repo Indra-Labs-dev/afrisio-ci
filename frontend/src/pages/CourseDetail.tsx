@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Loader2 } from "lucide-react";
+import { DashboardLoader } from "@/components/ui/loaders";
 import ReactMarkdown from "react-markdown";
 
 const CourseDetail = () => {
@@ -16,7 +16,7 @@ const CourseDetail = () => {
   if (isLoading) {
     return (
       <div className="container flex min-h-[60vh] items-center justify-center py-12">
-        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        <DashboardLoader />
       </div>
     );
   }

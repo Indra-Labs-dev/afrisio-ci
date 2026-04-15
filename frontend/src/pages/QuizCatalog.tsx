@@ -1,7 +1,7 @@
 import { Link, useSearchParams } from "react-router-dom";
 import { useQuizzes, useCategories } from "@/hooks/useApi";
 import { DIFFICULTY_LABEL, CATEGORY_ICON } from "@/api/types";
-import { Loader2 } from "lucide-react";
+import { ComponentLoader } from "@/components/ui/loaders";
 
 const difficultyColor = (d: string) => {
   if (d === "easy") return "bg-accent text-accent-foreground";
@@ -56,9 +56,8 @@ const QuizCatalog = () => {
 
       {/* Loading */}
       {isLoading && (
-        <div className="flex items-center justify-center py-20 text-muted-foreground">
-          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-          Chargement des quiz…
+        <div className="py-20">
+          <ComponentLoader />
         </div>
       )}
 
