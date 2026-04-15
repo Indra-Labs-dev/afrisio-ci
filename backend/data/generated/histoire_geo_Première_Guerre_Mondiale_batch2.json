@@ -1,0 +1,66 @@
+{
+  "category_id": "histoire_geo",
+  "topic": "Première Guerre Mondiale",
+  "questions": [
+    {
+      "question": "Quel événement a déclenché la Première Guerre mondiale ?",
+      "explanation": "L'assassinat de l'archiduc François-Ferdinand d'Autriche à Sarajevo en 1914 a déclenché la Première Guerre mondiale. Cet événement a dégénéré en conflit mondial en raison des alliances militaires entre les grandes puissances de l'époque.",
+      "difficulty": "medium",
+      "options": [
+        "L'assassinat de l'archiduc François-Ferdinand d'Autriche",
+        "La bataille de la Marne",
+        "La révolution russe de 1917",
+        "Le traité de Versailles"
+      ],
+      "answer": "L'assassinat de l'archiduc François-Ferdinand d'Autriche"
+    },
+    {
+      "question": "Quel fut le nom du traité qui mit fin à la Première Guerre mondiale ?",
+      "explanation": "Le traité de Versailles, signé le 28 juin 1919, a officiellement mis fin à la Première Guerre mondiale. Ce traité a imposé des sanctions sévères à l'Allemagne et a redessiné la carte de l'Europe.",
+      "difficulty": "medium",
+      "options": [
+        "Traité de Versailles",
+        "Traité de Berlin",
+        "Traité de Londres",
+        "Traité de Paris"
+      ],
+      "answer": "Traité de Versailles"
+    },
+    {
+      "question": "Qui étaient les principaux membres des Alliés pendant la Première Guerre mondiale ?",
+      "explanation": "Les principaux membres des Alliés pendant la Première Guerre mondiale étaient la France, le Royaume-Uni, les États-Unis, l'Italie et la Russie. Ces pays se sont unis pour contrer les puissances centrales composées de l'Allemagne, de l'Autriche-Hongrie et de l'Empire ottoman.",
+      "difficulty": "medium",
+      "options": [
+        "France, Allemagne, Italie",
+        "Royaume-Uni, États-Unis, Russie",
+        "France, Royaume-Uni, États-Unis",
+        "Allemagne, Autriche-Hongrie, Empire ottoman"
+      ],
+      "answer": "France, Royaume-Uni, États-Unis"
+    },
+    {
+      "question": "Quelle bataille a été l'une des plus meurtrières de la Première Guerre mondiale ?",
+      "explanation": "La bataille de la Somme, qui a eu lieu en 1916, a été l'une des batailles les plus meurtrières de la Première Guerre mondiale. Elle a opposé les forces britanniques et françaises aux forces allemandes et a causé des pertes massives des deux côtés.",
+      "difficulty": "medium",
+      "options": [
+        "Bataille de la Marne",
+        "Bataille de Verdun",
+        "Bataille de la Somme",
+        "Bataille de Cambrai"
+      ],
+      "answer": "Bataille de la Somme"
+    },
+    {
+      "question": "Quel pays a abandonné la guerre en 1917 en raison de la révolution ?",
+      "explanation": "La Russie a abandonné la guerre en 1917 après la révolution russe qui a renversé le tsar Nicolas II et a porté au pouvoir les bolcheviks menés par Lénine. Le nouveau gouvernement a signé le traité de Brest-Litovsk avec l'Allemagne, sortant ainsi la Russie de la guerre.",
+      "difficulty": "medium",
+      "options": [
+        "Allemagne",
+        "Autriche-Hongrie",
+        "Russie",
+        "Italie"
+      ],
+      "answer": "Russie"
+    }
+  ]
+}

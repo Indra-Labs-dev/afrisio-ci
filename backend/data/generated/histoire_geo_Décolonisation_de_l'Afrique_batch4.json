@@ -1,0 +1,66 @@
+{
+  "category_id": "histoire_geo",
+  "topic": "Décolonisation de l'Afrique",
+  "questions": [
+    {
+      "question": "Quel pays africain a obtenu son indépendance le premier après la Seconde Guerre mondiale ?",
+      "explanation": "L'Éthiopie a résisté à la colonisation italienne et a obtenu son indépendance en 1941, mais le premier pays à obtenir son indépendance après la Seconde Guerre mondiale est la Libye en 1951. Cependant, considérant les pays qui ont connu une colonisation plus typique, le Ghana est souvent cité comme le premier pays à obtenir son indépendance en 1957.",
+      "difficulty": "medium",
+      "options": [
+        "L'Égypte",
+        "Le Ghana",
+        "La Libye",
+        "L'Afrique du Sud"
+      ],
+      "answer": "Le Ghana"
+    },
+    {
+      "question": "Quel événement marquant a eu lieu en 1960 en Afrique ?",
+      "explanation": "L'année 1960 est souvent appelée l'« Année de l'Afrique » en raison du grand nombre de pays qui ont obtenu leur indépendance cette année-là, notamment le Sénégal, le Niger, le Mali, la Côte d'Ivoire, etc.",
+      "difficulty": "medium",
+      "options": [
+        "La conférence de Berlin",
+        "La déclaration d'indépendance de plusieurs pays africains",
+        "La création de l'Organisation de l'Unité Africaine",
+        "La fin de la guerre froide"
+      ],
+      "answer": "La déclaration d'indépendance de plusieurs pays africains"
+    },
+    {
+      "question": "Qui est considéré comme l'un des principaux artisans de la décolonisation en Afrique ?",
+      "explanation": "Kwame Nkrumah, le premier président du Ghana, a joué un rôle clé dans la décolonisation de l'Afrique en animant le mouvement panafricain et en encourageant l'indépendance des pays africains.",
+      "difficulty": "medium",
+      "options": [
+        "Nelson Mandela",
+        "Kwame Nkrumah",
+        "Patrice Lumumba",
+        "Julius Nyerere"
+      ],
+      "answer": "Kwame Nkrumah"
+    },
+    {
+      "question": "Quel était l'objectif principal de la Conférence de Berlin en 1884-1885 ?",
+      "explanation": "La Conférence de Berlin visait à réguler la colonisation de l'Afrique par les puissances européennes, en fixant les règles pour la reconnaissance des sphères d'influence et des annexions territoriales, dans le but d'éviter les conflits entre les colonisateurs.",
+      "difficulty": "medium",
+      "options": [
+        "Définir les frontières des colonies africaines",
+        "Établir des échanges commerciaux entre les colonies",
+        "Réguler la traite des esclaves",
+        "Fixer les règles pour la reconnaissance des sphères d'influence"
+      ],
+      "answer": "Fixer les règles pour la reconnaissance des sphères d'influence"
+    },
+    {
+      "question": "Quel pays africain a connu une guerre d'indépendance contre le Portugal, qui a duré de 1961 à 1974 ?",
+      "explanation": "L'Angola, ainsi que d'autres colonies portugaises en Afrique, ont mené une lutte armée pour leur indépendance contre le Portugal, qui a abouti à l'indépendance de l'Angola en 1975 après la chute du régime portugais en 1974.",
+      "difficulty": "medium",
+      "options": [
+        "Le Mozambique",
+        "L'Angola",
+        "La Guinée-Bissau",
+        "Le Cap-Vert"
+      ],
+      "answer": "L'Angola"
+    }
+  ]
+}

@@ -345,3 +345,9 @@ class QuestionCommentResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class PaginatedQuizResponse(BaseModel):
+    items: List[QuizResponse]
+    total: int
+    page: int
+    pages: int

@@ -16,6 +16,7 @@ import type {
   FlashcardResponse,
   QuestionCommentCreate,
   QuestionCommentResponse,
+  PaginatedQuizResponse,
 } from "./types";
 
 // ─── Auth token storage ───────────────────────────────────────────────────────
@@ -60,12 +61,15 @@ export const fetchCategories = (): Promise<Category[]> => request("/api/categori
 export const fetchQuizzes = (params?: {
   category_id?: number;
   difficulty?: string;
-}): Promise<QuizResponse[]> => {
+  skip?: number;
+  limit?: number;
+}): Promise<PaginatedQuizResponse> => {
   const qs = new URLSearchParams();
   if (params?.category_id) qs.set("category_id", String(params.category_id));
   if (params?.difficulty) qs.set("difficulty", params.difficulty);
-  const query = qs.toString() ? `?${qs}` : "";
-  return request(`/api/quizzes${query}`);
+  qs.set("skip", String(params?.skip ?? 0));
+  qs.set("limit", String(params?.limit ?? 20));
+  return request(`/api/quizzes?${qs}`);
 };
 
 export const fetchQuiz = (id: number): Promise<QuizDetailResponse> =>

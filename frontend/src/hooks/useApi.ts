@@ -16,7 +16,7 @@ import type { QuizSubmit } from "@/api/types";
 
 export const QUERY_KEYS = {
   categories: ["categories"] as const,
-  quizzes: (params?: { category_id?: number; difficulty?: string }) =>
+  quizzes: (params?: { category_id?: number; difficulty?: string; skip?: number; limit?: number }) =>
     ["quizzes", params] as const,
   quiz: (id: number) => ["quiz", id] as const,
   attempt: (id: number) => ["attempt", id] as const,
@@ -35,7 +35,7 @@ export function useCategories() {
   });
 }
 
-export function useQuizzes(params?: { category_id?: number; difficulty?: string }) {
+export function useQuizzes(params?: { category_id?: number; difficulty?: string; skip?: number; limit?: number }) {
   return useQuery({
     queryKey: QUERY_KEYS.quizzes(params),
     queryFn: () => fetchQuizzes(params),

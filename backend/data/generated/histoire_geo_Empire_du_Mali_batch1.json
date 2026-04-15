@@ -1,0 +1,66 @@
+{
+  "category_id": "histoire_geo",
+  "topic": "Empire du Mali",
+  "questions": [
+    {
+      "question": "Qui est considéré comme le fondateur de l'Empire du Mali?",
+      "explanation": "L'Empire du Mali a été fondé par Sundiata Keita, un chef légendaire qui a unifié les tribus du Mali et a établi la dynastie Keita. Il est connu pour ses conquêtes et son rôle dans la propagation de l'islam en Afrique de l'Ouest.",
+      "difficulty": "medium",
+      "options": [
+        "Sundiata Keita",
+        "Mansa Musa",
+        "Askia Mohammed",
+        "Abd al-Rahman"
+      ],
+      "answer": "Sundiata Keita"
+    },
+    {
+      "question": "Quel est le nom du célèbre empereur du Mali qui a effectué un pèlerinage à La Mecque en 1324?",
+      "explanation": "Mansa Musa Ier, également connu sous le nom de Musa Ier du Mali, est célèbre pour son pèlerinage à La Mecque en 1324. Ce voyage a contribué à la renommée de l'Empire du Mali et a eu un impact significatif sur les échanges commerciaux et culturels avec les régions du Moyen-Orient et du Nord de l'Afrique.",
+      "difficulty": "medium",
+      "options": [
+        "Mansa Musa",
+        "Sundiata Keita",
+        "Askia Mohammed",
+        "Abd al-Rahman"
+      ],
+      "answer": "Mansa Musa"
+    },
+    {
+      "question": "Quelle était la principale ressource économique de l'Empire du Mali au Moyen Âge?",
+      "explanation": "L'or était la principale ressource économique de l'Empire du Mali au Moyen Âge. Les mines d'or de la région ont contribué à la richesse et à la puissance de l'empire, faisant de lui un important acteur dans le commerce transsaharien.",
+      "difficulty": "medium",
+      "options": [
+        "L'or",
+        "Le sel",
+        "Les épices",
+        "Les textiles"
+      ],
+      "answer": "L'or"
+    },
+    {
+      "question": "Quel est le nom de la capitale de l'Empire du Mali à son apogée?",
+      "explanation": "Niani est considérée comme la capitale de l'Empire du Mali à son apogée. Cependant, certaines sources historiques mentionnent également la ville de Timbuktu comme un centre politique et commercial important, même si elle n'était pas toujours la capitale.",
+      "difficulty": "medium",
+      "options": [
+        "Niani",
+        "Timbuktu",
+        "Gao",
+        "Koumbi Saleh"
+      ],
+      "answer": "Niani"
+    },
+    {
+      "question": "Quel facteur a contribué à la chute de l'Empire du Mali?",
+      "explanation": "La chute de l'Empire du Mali peut être attribuée à plusieurs facteurs, notamment les guerres de succession, les invasions externes et la fragmentation interne. Cependant, un facteur clé a été l'affaiblissement de l'autorité centrale due aux luttes pour le pouvoir entre les différents clans et les régions de l'empire.",
+      "difficulty": "medium",
+      "options": [
+        "Les guerres de succession",
+        "Les invasions des empires voisins",
+        "La sécheresse et les catastrophes naturelles",
+        "La peste noire"
+      ],
+      "answer": "Les guerres de succession"
+    }
+  ]
+}

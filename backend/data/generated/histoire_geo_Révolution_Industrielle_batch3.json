@@ -1,0 +1,66 @@
+{
+  "category_id": "histoire_geo",
+  "topic": "Révolution Industrielle",
+  "questions": [
+    {
+      "question": "Quel est l'événement qui est souvent considéré comme le point de départ de la Révolution industrielle en Grande-Bretagne ?",
+      "explanation": "La construction de la première machine à vapeur par James Watt en 1769 est souvent considérée comme le point de départ de la Révolution industrielle en Grande-Bretagne, car elle a permis une augmentation significative de la production et de l'efficacité dans les usines et les mines.",
+      "difficulty": "medium",
+      "options": [
+        "La construction de la première usine textile",
+        "La construction de la première machine à vapeur par James Watt",
+        "L'invention de la locomotive à vapeur",
+        "La création du premier chemin de fer"
+      ],
+      "answer": "La construction de la première machine à vapeur par James Watt"
+    },
+    {
+      "question": "Quel est le nom du philosophe qui a écrit 'Das Kapital', une œuvre influente sur la théorie du capitalisme et de la révolution sociale ?",
+      "explanation": "Karl Marx a écrit 'Das Kapital' pour critiquer le système capitaliste et décrire les mécanismes de l'exploitation des travailleurs, influençant ainsi les théories socialistes et communistes.",
+      "difficulty": "medium",
+      "options": [
+        "Adam Smith",
+        "Karl Marx",
+        "Friedrich Engels",
+        "Charles Dickens"
+      ],
+      "answer": "Karl Marx"
+    },
+    {
+      "question": "Quelle est la principale ressource énergétique qui a remplacé la force humaine et animale pendant la Révolution industrielle ?",
+      "explanation": "Le charbon a été la principale source d'énergie pendant la Révolution industrielle, car il a alimenté les machines à vapeur et permis une production à grande échelle.",
+      "difficulty": "medium",
+      "options": [
+        "Le bois",
+        "Le charbon",
+        "L'huile",
+        "Le gaz naturel"
+      ],
+      "answer": "Le charbon"
+    },
+    {
+      "question": "Quel est le nom du système économique qui s'est développé pendant la Révolution industrielle, caractérisé par la propriété privée des moyens de production et la recherche du profit ?",
+      "explanation": "Le capitalisme s'est développé pendant la Révolution industrielle, car les propriétaires d'usines et de machines cherchaient à maximiser leurs profits en exploitant les ressources et la main-d'œuvre.",
+      "difficulty": "medium",
+      "options": [
+        "Le socialisme",
+        "Le communisme",
+        "Le capitalisme",
+        "Le féodalisme"
+      ],
+      "answer": "Le capitalisme"
+    },
+    {
+      "question": "Quelle a été l'une des conséquences sociales majeures de la Révolution industrielle en termes de migration de la population ?",
+      "explanation": "La Révolution industrielle a entraîné une migration massive de la population des campagnes vers les villes à la recherche de travail dans les usines, entraînant ainsi l'urbanisation et la croissance des villes.",
+      "difficulty": "medium",
+      "options": [
+        "Une diminution de la population urbaine",
+        "Une augmentation de la population rurale",
+        "Une migration de la population des campagnes vers les villes",
+        "Une réduction de la mobilité sociale"
+      ],
+      "answer": "Une migration de la population des campagnes vers les villes"
+    }
+  ]
+}

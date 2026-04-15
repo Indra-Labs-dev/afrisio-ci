@@ -17,7 +17,8 @@ from schemas import (
     BadgeResponse, UserBadgeResponse,
     ForgotPasswordRequest, ResetPasswordRequest,
     AvatarUpdateRequest, AdminQuizCreate, AdminCourseCreate, QuestionCreate,
-    FlashcardCreate, FlashcardResponse, QuestionCommentCreate, QuestionCommentResponse
+    FlashcardCreate, FlashcardResponse, QuestionCommentCreate, QuestionCommentResponse,
+    PaginatedQuizResponse
 )
 from auth import (
     hash_password, verify_password, create_access_token,
@@ -318,10 +319,12 @@ def get_course(course_id: int, db: Session = Depends(get_db)):
 # QUIZZES
 # ──────────────────────────────────────────────────────────────────────────────
 
-@app.get("/api/quizzes", response_model=List[QuizResponse])
+@app.get("/api/quizzes", response_model=PaginatedQuizResponse)
 def get_quizzes(
     category_id: Optional[int] = None,
     difficulty: Optional[str] = None,
+    skip: int = 0,
+    limit: int = 20,
     db: Session = Depends(get_db),
 ):
     query = db.query(Quiz).filter(Quiz.is_active == True)
@@ -330,7 +333,9 @@ def get_quizzes(
     if difficulty:
         query = query.filter(Quiz.difficulty == difficulty)
 
-    quizzes = query.all()
+    total = query.count()
+    quizzes = query.offset(skip).limit(limit).all()
+    
     result = []
     for quiz in quizzes:
         result.append({
@@ -340,16 +345,21 @@ def get_quizzes(
             "created_at": quiz.created_at, "category": quiz.category,
             "question_count": len(quiz.questions),
         })
-    return result
+    import math
+    return {
+        "items": result,
+        "total": total,
+        "page": (skip // limit) + 1 if limit > 0 else 1,
+        "pages": math.ceil(total / limit) if limit > 0 else 1
+    }
 
 
 @app.get("/api/quizzes/random", response_model=QuizDetailResponse)
 def get_random_quiz(count: int = 20, db: Session = Depends(get_db)):
     """Pick random questions from all quizzes and return as a virtual quiz."""
-    all_questions = db.query(Question).all()
-    if len(all_questions) < count:
-        count = len(all_questions)
-    selected = random.sample(all_questions, count)
+    selected = db.query(Question).order_by(func.random()).limit(count).all()
+    if not selected:
+        raise HTTPException(status_code=404, detail="No questions available")
 
     # Use a random existing quiz as prototype
     base_quiz = db.query(Quiz).filter(Quiz.is_active == True).first()

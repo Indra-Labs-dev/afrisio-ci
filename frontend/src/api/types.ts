@@ -152,6 +152,16 @@ export interface CourseDetailResponse extends CourseResponse {
   lessons: LessonResponse[];
 }
 
+// ─── Paginated responses ───────────────────────────────────────────────────────────
+export interface PaginatedResponse<T> {
+  items: T[];
+  total: number;
+  page: number;
+  pages: number;
+}
+
+export type PaginatedQuizResponse = PaginatedResponse<QuizResponse>;
+
 // ─── Flashcards ───────────────────────────────────────────────────────────────
 export interface FlashcardCreate {
   question_id: number;

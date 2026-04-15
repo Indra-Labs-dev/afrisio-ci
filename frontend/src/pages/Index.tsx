@@ -38,20 +38,20 @@ const HeroSection = () => (
 );
 
 const StatsSection = () => {
-  const { data: quizzes = [] } = useQuizzes();
+  const { data: quizData } = useQuizzes({ limit: 1 });
   const { data: categories = [] } = useCategories();
   const { data: attempts = [] } = useAttempts(100);
 
-  const totalQuestions = quizzes.reduce((acc, q) => acc + q.question_count, 0);
+  const totalQuestions = quizData?.total ?? 0;
 
   return (
     <section className="border-y bg-card py-12">
       <div className="container">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {[
-            { value: totalQuestions > 0 ? `${totalQuestions}+` : "…", label: "Questions" },
+            { value: totalQuestions > 0 ? `${totalQuestions.toLocaleString()}+` : "…", label: "Questions" },
             { value: categories.length > 0 ? String(categories.length) : "…", label: "Matières" },
-            { value: quizzes.length > 0 ? String(quizzes.length) : "…", label: "Quiz" },
+            { value: quizData?.total ? `${quizData.total}+` : "…", label: "Quiz" },
             { value: attempts.length > 0 ? `${attempts.length}+` : "0", label: "Sessions" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
@@ -67,7 +67,9 @@ const StatsSection = () => {
 
 const CategoriesSection = () => {
   const { data: categories = [], isLoading } = useCategories();
-  const { data: quizzes = [] } = useQuizzes();
+  // No need for quiz count per category from API, show generic label
+  const { data: paginated } = useQuizzes({ limit: 1 });
+  const totalQuizzes = paginated?.total ?? 0;
 
   return (
     <section className="py-20">
@@ -85,7 +87,6 @@ const CategoriesSection = () => {
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {categories.map((cat) => {
-              const count = quizzes.filter((q) => q.category_id === cat.id).length;
               return (
                 <Link
                   key={cat.id}
@@ -96,7 +97,7 @@ const CategoriesSection = () => {
                   <div>
                     <h3 className="font-heading font-semibold">{cat.name}</h3>
                     <p className="text-sm text-muted-foreground">
-                      {count} quiz disponible{count !== 1 ? "s" : ""}
+                      Voir les quiz &rarr;
                     </p>
                   </div>
                 </Link>
