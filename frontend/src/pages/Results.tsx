@@ -5,9 +5,14 @@ import { DashboardLoader } from "@/components/ui/loaders";
 const Results = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { data: result, isLoading, isError } = useAttempt(Number(id));
+  const isRandom = id === "random";
+  const { data: dbResult, isLoading, isError } = useAttempt(isRandom ? 0 : Number(id));
 
-  if (isLoading) {
+  const result = isRandom 
+    ? (sessionStorage.getItem("random_result") ? JSON.parse(sessionStorage.getItem("random_result") as string) : null)
+    : dbResult;
+
+  if (!isRandom && isLoading) {
     return (
       <div className="container flex min-h-[60vh] items-center justify-center py-12">
         <DashboardLoader />
@@ -15,7 +20,7 @@ const Results = () => {
     );
   }
 
-  if (isError || !result) {
+  if ((!isRandom && isError) || !result) {
     return (
       <div className="container py-20 text-center">
         <h1 className="font-heading text-2xl font-bold">Résultats introuvables</h1>
@@ -70,16 +75,24 @@ const Results = () => {
           <p className="mt-1 text-sm text-muted-foreground font-medium">
             📚 {quiz.title}
           </p>
-          <div className="mt-6 flex justify-center gap-4">
+          <div className="mt-6 flex flex-wrap justify-center gap-4 print:hidden">
+            <button
+              onClick={() => window.print()}
+              className="rounded-lg border px-6 py-2 font-medium hover:bg-muted transition-colors flex items-center gap-2"
+              title="Imprimer les résultats"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M224,96V104a8,8,0,0,1-16,0V96a16,16,0,0,0-16-16H64A16,16,0,0,0,48,96v8a8,8,0,0,1-16,0V96A32,32,0,0,1,64,64H192A32,32,0,0,1,224,96Z"></path><path d="M200,120H56a24,24,0,0,0-24,24v64a24,24,0,0,0,24,24H72v16a8,8,0,0,0,8,8h96a8,8,0,0,0,8-8V232h16a24,24,0,0,0,24-24V144A24,24,0,0,0,200,120Zm-32,120H88V168h80Zm40-32a8,8,0,0,1-8,8H184V160a8,8,0,0,0-8-8H80a8,8,0,0,0-8,8v56H56a8,8,0,0,1-8-8V144a8,8,0,0,1,8-8H200a8,8,0,0,1,8,8Zm-24-52a12,12,0,1,1,12-12A12,12,0,0,1,184,156Z"></path></svg>
+              Imprimer
+            </button>
             <Link
-              to={`/quiz/${quiz.id}`}
-              className="rounded-lg border px-6 py-2 font-medium hover:bg-muted"
+              to={isRandom ? "/quiz/generate-random" : `/quiz/${quiz.id}`}
+              className="rounded-lg border px-6 py-2 font-medium hover:bg-muted transition-colors"
             >
               Recommencer
             </Link>
             <Link
               to="/quiz"
-              className="rounded-lg bg-primary px-6 py-2 font-medium text-primary-foreground hover:opacity-90"
+              className="rounded-lg bg-primary px-6 py-2 font-medium text-primary-foreground hover:opacity-90 transition-opacity"
             >
               Autre quiz
             </Link>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { scoreRandomQuiz } from "@/api/client";
 import { useStartQuiz, useSubmitQuiz } from "@/hooks/useApi";
 import { DIFFICULTY_LABEL } from "@/api/types";
 import type { QuizDetailResponse, QuizStartResponse } from "@/api/types";
@@ -79,18 +80,17 @@ const QuizPlay = () => {
     }));
 
     if (id === "random") {
-      // Simulate submission locally for random mock exams
-      let score = 0;
-      let max_score = 0;
-      const resultAnswers = quiz.questions.map((q) => {
-        max_score += q.points;
-        const correctOpt = q.options.find(o => o.is_correct); // note: frontend won't have correct answer actually unless backed included it. BUT since random endpoint doesn't send answers we might have a problem.
-        // Actually, backend /api/quizzes/random returns QuizDetailResponse which HIDES answers. So we can't truly score it offline without fetching.
-        // We will just redirect to catalog with an alert for now if we can't score.
-        return null;
+      scoreRandomQuiz({
+        attempt_id: -1,
+        answers: answersPayload,
+        time_spent_seconds: timeSpent,
+      }).then(result => {
+        // Enregistrer le résultat dans le local storage de façon temporaire
+        sessionStorage.setItem("random_result", JSON.stringify(result));
+        navigate("/results/random");
+      }).catch(() => {
+        alert("Erreur lors de la correction de l'examen blanc.");
       });
-      alert("Examen blanc terminé ! Le calcul du score local pour questions aléatoires arrive bientôt.");
-      navigate("/quiz");
       return;
     }
 

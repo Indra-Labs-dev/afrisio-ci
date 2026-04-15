@@ -436,6 +436,61 @@ def start_quiz(
     return {"attempt_id": attempt.id, "quiz": quiz_data}
 
 
+@app.post("/api/quizzes/random/score", response_model=QuizResultResponse)
+def score_random(submission: QuizSubmit, db: Session = Depends(get_db)):
+    score = 0
+    max_score = 0
+    user_answers = []
+
+    for answer_data in submission.answers:
+        question = db.query(Question).filter(Question.id == answer_data.question_id).first()
+        if not question:
+            continue
+        max_score += question.points
+        correct_option = db.query(Option).filter(
+            Option.question_id == question.id, Option.is_correct == True
+        ).first()
+
+        is_correct = False
+        if answer_data.selected_option_id and correct_option:
+            is_correct = answer_data.selected_option_id == correct_option.id
+        if is_correct:
+            score += question.points
+
+        selected_option = db.query(Option).filter(Option.id == answer_data.selected_option_id).first() if answer_data.selected_option_id else None
+
+        user_answers.append({
+            "question_id": answer_data.question_id,
+            "selected_option_id": answer_data.selected_option_id,
+            "is_correct": is_correct,
+            "correct_option_id": correct_option.id if correct_option else None,
+            "explanation": question.explanation if question else None,
+            "question_text": question.question_text if question else None,
+            "selected_option_text": selected_option.option_text if selected_option else None,
+            "correct_option_text": correct_option.option_text if correct_option else None,
+        })
+
+    pct = (score / max_score * 100) if max_score > 0 else 0
+
+    return {
+        "attempt": {
+            "id": -1, "quiz_id": 0, "score": score,
+            "max_score": max_score, "percentage": pct,
+            "started_at": datetime.utcnow(), "completed_at": datetime.utcnow(),
+            "time_spent_seconds": submission.time_spent_seconds,
+            "quiz": {
+                "id": 0, "title": "Examen Blanc", "description": "Résultat de votre examen blanc aléatoire",
+                "duration_minutes": 0, "difficulty": "mixed",
+                "is_active": True, "category_id": 0,
+                "created_at": datetime.utcnow(), 
+                "category": {"id":0, "name": "Mix", "icon": "🎲", "description": ""},
+                "question_count": len(user_answers),
+            },
+        },
+        "answers": user_answers,
+    }
+
+
 @app.post("/api/quizzes/submit", response_model=QuizResultResponse)
 def submit_quiz(submission: QuizSubmit, db: Session = Depends(get_db)):
     attempt = db.query(QuizAttempt).filter(QuizAttempt.id == submission.attempt_id).first()

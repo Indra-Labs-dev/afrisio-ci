@@ -74,6 +74,9 @@ export const startQuiz = (quizId: number): Promise<QuizStartResponse> =>
 export const submitQuiz = (payload: QuizSubmit): Promise<QuizResultResponse> =>
   request("/api/quizzes/submit", { method: "POST", body: JSON.stringify(payload) });
 
+export const scoreRandomQuiz = (payload: QuizSubmit): Promise<QuizResultResponse> =>
+  request("/api/quizzes/random/score", { method: "POST", body: JSON.stringify(payload) });
+
 // ─── Attempts ─────────────────────────────────────────────────────────────────
 export const fetchAttempt = (id: number): Promise<QuizResultResponse> =>
   request(`/api/attempts/${id}`);
